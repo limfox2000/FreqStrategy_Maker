@@ -1,0 +1,1327 @@
+[2m17:30:38[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:31:03[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:31:19[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:31:34[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:32:28[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:32:49[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated string constant. (25:25)
+
+[0m [90m 23 |[31m
+ [90m 24 |[31m [36mfunction[31m shortVersion(versionId[33m?[31m[33m:[31m string)[33m:[31m string {
+[31m[1m>[22m[31m[90m 25 |[31m   [36mif[31m ([33m![31mversionId) [36mreturn[31m [32m"鏈敓鎴?;[31m
+ [90m    |[31m                          [31m[1m^[22m[31m
+ [90m 26 |[31m   [36mreturn[31m versionId[33m.[31mslice([35m0[31m[33m,[31m [35m18[31m)[33m;[31m
+ [90m 27 |[31m }
+ [90m 28 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:25:25
+[33m  23 |  
+  24 |  function shortVersion(versionId?: string): string {
+  25 |    if (!versionId) return "鏈敓鎴?;
+     |                           ^
+  26 |    return versionId.slice(0, 18);
+  27 |  }[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5406:16)
+      at TypeScriptParserMixin.readString (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6498:9)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6258:14)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4797:11)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13138:10)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementOrSloppyAnnexBFunctionDeclaration (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12757:17)
+      at TypeScriptParserMixin.parseIfStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13130:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12796:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseFunctionStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13125:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12791:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\gensync\index.js:261:32)
+[2m17:38:56[22m [31m[1m[vite][22m[39m Pre-transform error: Transform failed with 1 error:
+G:/Trading/FreqStrategy_Maker/studio/web/src/store/strategyStore.ts:58:70: ERROR: Unterminated string literal
+[2m17:38:56[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 1 error:
+G:/Trading/FreqStrategy_Maker/studio/web/src/store/strategyStore.ts:58:70: ERROR: Unterminated string literal[39m
+  Plugin: [35mvite:esbuild[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/store/strategyStore.ts[39m:58:70
+[33m  
+  [33mUnterminated string literal[33m
+  57 |  function titleByType(cardType: CardType): string {
+  58 |    if (cardType === "indicator_factor") return "鎸囨爣鍥犲瓙鍗?;
+  59 |    if (cardType === "position_adjustment") return "浠撲綅璋冩暣鍗?;
+     |               ^
+  60 |    if (cardType === "strategy") return "绛栫暐灏佽鍗?;
+  61 |    return "椋庨櫓绯荤粺鍗?;
+  [39m
+      at failureErrorWithLog (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:1472:15)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:755:50
+      at responseCallbacks.<computed> (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:622:9)
+      at handleIncomingPacket (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:677:12)
+      at Socket.readFromStdout (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:600:7)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+[2m20:54:35[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (178:0)
+
+[0m [90m 176 |[31m     }[33m;[31m
+ [90m 177 |[31m   }[33m,[31m [jobId[33m,[31m setBacktestResult])[33m;[31m
+[31m[1m>[22m[31m[90m 178 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:178:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m20:55:28[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (360:0)
+
+[0m [90m 358 |[31m     setContextMenu([36mnull[31m)[33m;[31m
+ [90m 359 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 360 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:360:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:03:58[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (253:0)
+
+[0m [90m 251 |[39m     [36mif[39m (loadError) setError(loadError)[33m;[39m
+ [90m 252 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 253 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:03:59[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (253:0)
+
+[0m [90m 251 |[31m     [36mif[31m (loadError) setError(loadError)[33m;[31m
+ [90m 252 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 253 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:253:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:04:39[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (433:0)
+
+[0m [90m 431 |[39m     [36mreturn[39m undefined[33m;[39m
+ [90m 432 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 433 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:04:40[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (433:0)
+
+[0m [90m 431 |[31m     [36mreturn[31m undefined[33m;[31m
+ [90m 432 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 433 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:433:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:05:28[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (655:0)
+
+[0m [90m 653 |[39m     )[33m;[39m
+ [90m 654 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 655 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:05:29[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (655:0)
+
+[0m [90m 653 |[31m     )[33m;[31m
+ [90m 654 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 655 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:655:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:06:09[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated JSX contents. (822:16)
+
+[0m [90m 820 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 821 |[39m         ) [33m:[39m [36mnull[39m}
+[31m[1m>[22m[39m[90m 822 |[39m       [33m<[39m[33m/[39m[33msection[39m[33m>[39m
+ [90m     |[39m                 [31m[1m^[22m[39m
+ [90m 823 |[39m[0m
+[2m21:06:10[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated JSX contents. (822:16)
+
+[0m [90m 820 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 821 |[31m         ) [33m:[31m [36mnull[31m}
+[31m[1m>[22m[31m[90m 822 |[31m       [33m<[31m[33m/[31m[33msection[31m[33m>[31m
+ [90m     |[31m                 [31m[1m^[22m[31m
+ [90m 823 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:822:16
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.jsxReadToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4448:20)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4774:12)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.eat (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5696:12)
+      at TypeScriptParserMixin.expect (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6898:15)
+      at TypeScriptParserMixin.jsxParseClosingElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4680:10)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4695:37)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+[2m21:11:48[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (253:0)
+
+[0m [90m 251 |[39m     [36mif[39m (loadError) setError(loadError)[33m;[39m
+ [90m 252 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 253 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:11:49[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (253:0)
+
+[0m [90m 251 |[31m     [36mif[31m (loadError) setError(loadError)[33m;[31m
+ [90m 252 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 253 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:253:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:12:31[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (433:0)
+
+[0m [90m 431 |[39m     [36mreturn[39m undefined[33m;[39m
+ [90m 432 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 433 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:12:32[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (433:0)
+
+[0m [90m 431 |[31m     [36mreturn[31m undefined[33m;[31m
+ [90m 432 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 433 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:433:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:13:16[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (655:0)
+
+[0m [90m 653 |[39m     )[33m;[39m
+ [90m 654 |[39m   }[33m;[39m
+[31m[1m>[22m[39m[90m 655 |[39m
+ [90m     |[39m [31m[1m^[22m[39m[0m
+[2m21:13:17[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unexpected token (655:0)
+
+[0m [90m 653 |[31m     )[33m;[31m
+ [90m 654 |[31m   }[33m;[31m
+[31m[1m>[22m[31m[90m 655 |[31m
+ [90m     |[31m [31m[1m^[22m[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:655:0
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.unexpected (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6619:16)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11442:22)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12895:23)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9172:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12612:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14488:25)
+      at TypeScriptParserMixin.parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10126:18)
+      at parse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+[2m21:13:59[22m [31m[1m[vite][22m[39m Pre-transform error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated JSX contents. (822:16)
+
+[0m [90m 820 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 821 |[39m         ) [33m:[39m [36mnull[39m}
+[31m[1m>[22m[39m[90m 822 |[39m       [33m<[39m[33m/[39m[33msection[39m[33m>[39m
+ [90m     |[39m                 [31m[1m^[22m[39m
+ [90m 823 |[39m[0m
+[2m21:14:00[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Unterminated JSX contents. (822:16)
+
+[0m [90m 820 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 821 |[31m         ) [33m:[31m [36mnull[31m}
+[31m[1m>[22m[31m[90m 822 |[31m       [33m<[31m[33m/[31m[33msection[31m[33m>[31m
+ [90m     |[31m                 [31m[1m^[22m[31m
+ [90m 823 |[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:822:16
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.jsxReadToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4448:20)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4774:12)
+      at TypeScriptParserMixin.getTokenFromCode (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9987:11)
+      at TypeScriptParserMixin.nextToken (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5782:10)
+      at TypeScriptParserMixin.next (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5692:10)
+      at TypeScriptParserMixin.eat (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:5696:12)
+      at TypeScriptParserMixin.expect (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6898:15)
+      at TypeScriptParserMixin.jsxParseClosingElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4680:10)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4695:37)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.parseReturnStatement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:13142:28)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12798:21)
+      at TypeScriptParserMixin.parseStatementContent (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12747:17)
+[2m21:29:38[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Nullish coalescing operator(??) requires parens when mixing with logical operators. (690:58)
+
+[0m [90m 688 |[31m           [33m<[31m[33mp[31m[33m>[31m[33mRETRO[31m [33mCARD[31m [33mASSEMBLER[31m[33m<[31m[33m/[31m[33mp[31m[33m>[31m
+ [90m 689 |[31m           [33m<[31m[33mdiv[31m className[33m=[31m[32m"active-model-indicator"[31m[33m>[31m
+[31m[1m>[22m[31m[90m 690 |[31m             当前激活模型[33m:[31m {activeModel[33m?[31m[33m.[31mlabel [33m?[31m[33m?[31m activeModelKey [33m||[31m [32m"加载中..."[31m}
+ [90m     |[31m                                                           [31m[1m^[22m[31m
+ [90m 691 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 692 |[31m         [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 693 |[31m         [33m<[31m[33mdiv[31m className[33m=[31m[32m"toolbar-group"[31m[33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:690:58
+[33m  688|            <p>RETRO CARD ASSEMBLER</p>
+  689|            <div className="active-model-indicator">
+  690|              当前激活模型: {activeModel?.label ?? activeModelKey || "加载中..."}
+     |                                                                ^
+  691|            </div>
+  692|          </div>[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10951:22)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9306:18)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10908:17)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4632:31)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4711:36)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+[2m21:29:50[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Nullish coalescing operator(??) requires parens when mixing with logical operators. (690:58)
+
+[0m [90m 688 |[31m           [33m<[31m[33mp[31m[33m>[31m[33mRETRO[31m [33mCARD[31m [33mASSEMBLER[31m[33m<[31m[33m/[31m[33mp[31m[33m>[31m
+ [90m 689 |[31m           [33m<[31m[33mdiv[31m className[33m=[31m[32m"active-model-indicator"[31m[33m>[31m
+[31m[1m>[22m[31m[90m 690 |[31m             当前激活模型[33m:[31m {activeModel[33m?[31m[33m.[31mlabel [33m?[31m[33m?[31m activeModelKey [33m||[31m [32m"加载中..."[31m}
+ [90m     |[31m                                                           [31m[1m^[22m[31m
+ [90m 691 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 692 |[31m         [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 693 |[31m         [33m<[31m[33mdiv[31m className[33m=[31m[32m"toolbar-group"[31m[33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:690:58
+[33m  688|            <p>RETRO CARD ASSEMBLER</p>
+  689|            <div className="active-model-indicator">
+  690|              当前激活模型: {activeModel?.label ?? activeModelKey || "加载中..."}
+     |                                                                ^
+  691|            </div>
+  692|          </div>[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10951:22)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9306:18)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10908:17)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4632:31)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4711:36)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+[2m21:30:11[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Nullish coalescing operator(??) requires parens when mixing with logical operators. (690:58)
+
+[0m [90m 688 |[31m           [33m<[31m[33mp[31m[33m>[31m[33mRETRO[31m [33mCARD[31m [33mASSEMBLER[31m[33m<[31m[33m/[31m[33mp[31m[33m>[31m
+ [90m 689 |[31m           [33m<[31m[33mdiv[31m className[33m=[31m[32m"active-model-indicator"[31m[33m>[31m
+[31m[1m>[22m[31m[90m 690 |[31m             当前激活模型[33m:[31m {activeModel[33m?[31m[33m.[31mlabel [33m?[31m[33m?[31m activeModelKey [33m||[31m [32m"加载中..."[31m}
+ [90m     |[31m                                                           [31m[1m^[22m[31m
+ [90m 691 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 692 |[31m         [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 693 |[31m         [33m<[31m[33mdiv[31m className[33m=[31m[32m"toolbar-group"[31m[33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:690:58
+[33m  688|            <p>RETRO CARD ASSEMBLER</p>
+  689|            <div className="active-model-indicator">
+  690|              当前激活模型: {activeModel?.label ?? activeModelKey || "加载中..."}
+     |                                                                ^
+  691|            </div>
+  692|          </div>[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10951:22)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9306:18)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10908:17)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4632:31)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4711:36)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+[2m21:30:29[22m [31m[1m[vite][22m[39m [31mInternal server error: G:\Trading\FreqStrategy_Maker\studio\web\src\App.tsx: Nullish coalescing operator(??) requires parens when mixing with logical operators. (690:58)
+
+[0m [90m 688 |[31m           [33m<[31m[33mp[31m[33m>[31m[33mRETRO[31m [33mCARD[31m [33mASSEMBLER[31m[33m<[31m[33m/[31m[33mp[31m[33m>[31m
+ [90m 689 |[31m           [33m<[31m[33mdiv[31m className[33m=[31m[32m"active-model-indicator"[31m[33m>[31m
+[31m[1m>[22m[31m[90m 690 |[31m             当前激活模型[33m:[31m {activeModel[33m?[31m[33m.[31mlabel [33m?[31m[33m?[31m activeModelKey [33m||[31m [32m"加载中..."[31m}
+ [90m     |[31m                                                           [31m[1m^[22m[31m
+ [90m 691 |[31m           [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 692 |[31m         [33m<[31m[33m/[31m[33mdiv[31m[33m>[31m
+ [90m 693 |[31m         [33m<[31m[33mdiv[31m className[33m=[31m[32m"toolbar-group"[31m[33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:690:58
+[33m  688|            <p>RETRO CARD ASSEMBLER</p>
+  689|            <div className="active-model-indicator">
+  690|              当前激活模型: {activeModel?.label ?? activeModelKey || "加载中..."}
+     |                                                                ^
+  691|            </div>
+  692|          </div>[39m
+      at constructor (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6599:19)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10951:22)
+      at TypeScriptParserMixin.parseExprOp (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9306:18)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10908:17)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4632:31)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4711:36)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElementAt (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4698:32)
+      at TypeScriptParserMixin.jsxParseElement (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4749:17)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4759:19)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:39
+      at TypeScriptParserMixin.tryParse (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:6907:20)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9775:18)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12426:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10800:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12493:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11675:28)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11331:23)
+      at TypeScriptParserMixin.parseExprAtom (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:4764:20)
+      at TypeScriptParserMixin.parseExprSubscripts (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11081:23)
+      at TypeScriptParserMixin.parseUpdate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11066:21)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:11046:23)
+      at TypeScriptParserMixin.parseMaybeUnary (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9837:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10899:61)
+      at TypeScriptParserMixin.parseExprOps (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10904:23)
+      at TypeScriptParserMixin.parseMaybeConditional (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10881:23)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10831:21)
+      at TypeScriptParserMixin.parseMaybeAssign (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:9786:20)
+      at TypeScriptParserMixin.parseExpressionBase (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10784:23)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
+      at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
+      at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)

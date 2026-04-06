@@ -1,0 +1,14 @@
+{
+  "mode": "both",
+  "trades": 211,
+  "winrate": 34.6,
+  "profit_total_pct": -7.389,
+  "profit_total_abs": -73.889,
+  "profit_factor": 0.425,
+  "max_drawdown_pct": 9.299,
+  "market_change_pct": -28.628,
+  "long_trades": 102,
+  "long_profit_pct": -4.876,
+  "short_trades": 109,
+  "short_profit_pct": -2.513
+}

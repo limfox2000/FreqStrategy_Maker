@@ -1,0 +1,682 @@
+INFO:     Will watch for changes in these directories: ['G:\\Trading\\FreqStrategy_Maker\\studio\\api']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [25076] using StatReload
+INFO:     Started server process [33608]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [30028]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [7572]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [23264]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [9380]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\schemas\strategy.py'. Reloading...
+INFO:     Started server process [2200]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [40368]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\schemas\module.py'. Reloading...
+INFO:     Started server process [22100]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\schemas\strategy.py'. Reloading...
+INFO:     Started server process [12752]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\freqtrade_skill.py'. Reloading...
+Process SpawnProcess-10:
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 59, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 66, in serve
+    config.load()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\config.py", line 471, in load
+    self.loaded_app = import_from_string(self.app)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\importer.py", line 21, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\main.py", line 8, in <module>
+    from .routers.module import router as module_router
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 6, in <module>
+    from ..services.freqtrade_skill import generate_module
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 42
+    "6) 如果用户�\u20ac求出现明�\ue1bd��值（�?EMA 周期、�\ue11b损百分比、加仓阈值），必须优先严格采用�\ue1da数�\u20ac��\u20ac?
+    ^
+SyntaxError: unterminated string literal (detected at line 42)
+WARNING:  StatReload detected changes in 'app\services\freqtrade_skill.py'. Reloading...
+Process SpawnProcess-11:
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 59, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 66, in serve
+    config.load()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\config.py", line 471, in load
+    self.loaded_app = import_from_string(self.app)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\importer.py", line 21, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\main.py", line 8, in <module>
+    from .routers.module import router as module_router
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 6, in <module>
+    from ..services.freqtrade_skill import generate_module
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 42
+    "6) 如果用户�\u20ac求出现明�\ue1bd��值（�?EMA 周期、�\ue11b损百分比、加仓阈值），必须优先严格采用�\ue1da数�\u20ac��\u20ac?
+    ^
+SyntaxError: unterminated string literal (detected at line 42)
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+Process SpawnProcess-12:
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 314, in _bootstrap
+    self.run()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\_subprocess.py", line 76, in subprocess_started
+    target(sockets=sockets)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 59, in run
+    return asyncio.run(self.serve(sockets=sockets))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\server.py", line 66, in serve
+    config.load()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\config.py", line 471, in load
+    self.loaded_app = import_from_string(self.app)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\importer.py", line 21, in import_from_string
+    module = importlib.import_module(module_str)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\main.py", line 8, in <module>
+    from .routers.module import router as module_router
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 6, in <module>
+    from ..services.freqtrade_skill import generate_module
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 42
+    "6) 如果用户�\u20ac求出现明�\ue1bd��值（�?EMA 周期、�\ue11b损百分比、加仓阈值），必须优先严格采用�\ue1da数�\u20ac��\u20ac?
+    ^
+SyntaxError: unterminated string literal (detected at line 42)
+WARNING:  StatReload detected changes in 'app\services\freqtrade_skill.py'. Reloading...
+INFO:     Started server process [34096]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\ai.py", line 27, in get_persona_endpoint
+    return get_persona()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 198, in get_persona
+    ensure_ai_files()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 126, in ensure_ai_files
+    config = read_json(AI_CONFIG_PATH)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\storage.py", line 46, in read_json
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\ai.py", line 27, in get_persona_endpoint
+    return get_persona()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 198, in get_persona
+    ensure_ai_files()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 126, in ensure_ai_files
+    config = read_json(AI_CONFIG_PATH)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\storage.py", line 46, in read_json
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+WARNING:  StatReload detected changes in 'app\services\ai_runtime.py'. Reloading...
+INFO:     Started server process [24140]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 14, in generate_module_endpoint
+    return generate_module(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 404, in generate_module
+    generated = _generate_via_llm(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 390, in _generate_via_llm
+    _validate_requirement_alignment(payload.card_type, payload.requirement, generated.module_code)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 299, in _validate_requirement_alignment
+    split_match = re.search(r"(?:分|拆成|split)[^\d]{0,6}(\d+)\s*(?:批|份|part|batch|�??", requirement, re.IGNORECASE)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 200, in search
+    return _compile(pattern, flags).search(string)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 303, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_compile.py", line 788, in compile
+    p = sre_parse.parse(p, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 955, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 444, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 843, in _parse
+    raise source.error("missing ), unterminated subpattern",
+re.error: missing ), unterminated subpattern at position 33
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 14, in generate_module_endpoint
+    return generate_module(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 404, in generate_module
+    generated = _generate_via_llm(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 390, in _generate_via_llm
+    _validate_requirement_alignment(payload.card_type, payload.requirement, generated.module_code)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 299, in _validate_requirement_alignment
+    split_match = re.search(r"(?:分|拆成|split)[^\d]{0,6}(\d+)\s*(?:批|份|part|batch|�??", requirement, re.IGNORECASE)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 200, in search
+    return _compile(pattern, flags).search(string)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 303, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_compile.py", line 788, in compile
+    p = sre_parse.parse(p, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 955, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 444, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 843, in _parse
+    raise source.error("missing ), unterminated subpattern",
+re.error: missing ), unterminated subpattern at position 33
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\module.py", line 14, in generate_module_endpoint
+    return generate_module(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 404, in generate_module
+    generated = _generate_via_llm(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 390, in _generate_via_llm
+    _validate_requirement_alignment(payload.card_type, payload.requirement, generated.module_code)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 273, in _validate_requirement_alignment
+    stoploss_pct = _extract_percent_near_keyword(requirement, ["止损", "stoploss", "stop loss", "sl"])
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\freqtrade_skill.py", line 244, in _extract_percent_near_keyword
+    matched = re.search(pattern, requirement, re.IGNORECASE)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 200, in search
+    return _compile(pattern, flags).search(string)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\re.py", line 303, in _compile
+    p = sre_compile.compile(pattern, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_compile.py", line 788, in compile
+    p = sre_parse.parse(p, flags)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 955, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 444, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\sre_parse.py", line 550, in _parse
+    raise source.error("unterminated character set",
+re.error: unterminated character set at position 32
+WARNING:  StatReload detected changes in 'app\services\freqtrade_skill.py'. Reloading...
+INFO:     Started server process [26596]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\ai.py", line 27, in get_persona_endpoint
+    return get_persona()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 206, in get_persona
+    ensure_ai_files()
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\ai_runtime.py", line 134, in ensure_ai_files
+    config = read_json(AI_CONFIG_PATH)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\storage.py", line 46, in read_json
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [32876]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [6244]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [7344]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [24160]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [18348]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [36040]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [37152]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [7196]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [39920]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\schemas\backtest.py'. Reloading...
+INFO:     Started server process [13888]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [1976]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [29856]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [28212]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [39216]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [27048]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [41168]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [21012]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\schemas\strategy.py'. Reloading...
+INFO:     Started server process [35608]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [36416]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 184, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 92, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\cors.py", line 147, in simple_response
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 79, in __call__
+    raise exc
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\middleware\exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 21, in __call__
+    raise e
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\routing.py", line 66, in app
+    response = await func(request)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\fastapi\routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\starlette\concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\site-packages\anyio\_backends\_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\routers\strategy.py", line 14, in compose_strategy_endpoint
+    return compose_strategy(payload)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\strategy_composer.py", line 451, in compose_strategy
+    strategy_code, compose_note = _generate_strategy_via_llm(
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\strategy_composer.py", line 355, in _generate_strategy_via_llm
+    completion = complete_text(identity, system_prompt, user_prompt)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\llm_adapter.py", line 212, in complete_text
+    return _call_openai_responses(identity, system_prompt, user_prompt)
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\llm_adapter.py", line 169, in _call_openai_responses
+    response = _post_json(
+  File "G:\Trading\FreqStrategy_Maker\studio\api\app\services\llm_adapter.py", line 45, in _post_json
+    raw = response.read().decode("utf-8")
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 459, in read
+    return self._read_chunked(amt)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 582, in _read_chunked
+    chunk_left = self._get_chunk_left()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 565, in _get_chunk_left
+    chunk_left = self._read_next_chunk_size()
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 525, in _read_next_chunk_size
+    line = self.fp.readline(_MAXLINE + 1)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\ssl.py", line 1274, in recv_into
+    return self.read(nbytes, buffer)
+  File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\ssl.py", line 1130, in read
+    return self._sslobj.read(len, buffer)
+TimeoutError: The read operation timed out
