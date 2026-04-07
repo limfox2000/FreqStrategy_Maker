@@ -10,6 +10,7 @@ import {
   runBacktest,
   savePersona,
   setActiveAiModel,
+  syncStrategyFromFile,
 } from "./api/client";
 import { useStrategyStore } from "./store/strategyStore";
 import type { AiModelPreset, BacktestResult, CardType, ModuleCardType, StrategyCard } from "./types";
@@ -756,6 +757,52 @@ export default function App() {
     }
   };
 
+  const handleSyncStrategyFromFile = async (cardId?: string) => {
+    const target = resolveTargetCard(cardId);
+    if (!target || target.cardType !== "strategy") {
+      setError("请先选中策略卡。");
+      return;
+    }
+    if (!target.buildId) {
+      setError("该策略卡尚未封装，暂无可同步的策略文件。");
+      return;
+    }
+
+    setBusy("正在从本地策略文件同步...");
+    setError(null);
+    try {
+      const response = await syncStrategyFromFile({ buildId: target.buildId });
+      setComposeResult({
+        buildId: response.build_id,
+        strategyFile: response.strategy_file,
+        warnings: response.warnings,
+      });
+      setStrategyCardComposed(target.id, {
+        buildId: response.build_id,
+        strategyFile: response.strategy_file,
+        strategyCode: response.strategy_code,
+        explain: response.validation_logs.join("\n") || "已从本地策略文件同步并更新。",
+        sourceCardIds: target.sourceCardIds,
+        sourceVersionIds:
+          target.sourceVersionIds &&
+          ({
+            indicator_factor: response.source_versions.indicator_factor ?? target.sourceVersionIds.indicator_factor,
+            position_adjustment:
+              response.source_versions.position_adjustment ?? target.sourceVersionIds.position_adjustment,
+            risk_system: response.source_versions.risk_system ?? target.sourceVersionIds.risk_system,
+          } as Record<ModuleCardType, string>),
+        optimizationNote: response.optimization_note,
+      });
+      setBacktestSlotCardId(target.id);
+      selectCard(target.id);
+      setPanelCardId(target.id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "策略文件同步失败");
+    } finally {
+      setBusy(null);
+    }
+  };
+
   const handleSaveAiSettings = async () => {
     if (!aiLoaded) return;
 
@@ -1152,9 +1199,18 @@ export default function App() {
                     {equippedCardIds[panelCard.cardType] === panelCard.id ? "卸载模块" : "装载模块"}
                   </button>
                 ) : (
-                  <button type="button" disabled={Boolean(busy)} onClick={() => void handleRunBacktest(panelCard.id)}>
-                    用该策略回测
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      disabled={Boolean(busy) || !panelCard.buildId}
+                      onClick={() => void handleSyncStrategyFromFile(panelCard.id)}
+                    >
+                      从文件同步
+                    </button>
+                    <button type="button" disabled={Boolean(busy)} onClick={() => void handleRunBacktest(panelCard.id)}>
+                      用该策略回测
+                    </button>
+                  </>
                 )}
               </div>
 

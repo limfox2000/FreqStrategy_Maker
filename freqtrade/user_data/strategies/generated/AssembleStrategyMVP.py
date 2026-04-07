@@ -6,7 +6,7 @@ import talib.abstract as ta
 from pandas import DataFrame
 
 from freqtrade.persistence import Trade
-from freqtrade.strategy import IStrategy, IntParameter, DecimalParameter
+from freqtrade.strategy import IStrategy, IntParameter, DecimalParameter, CategoricalParameter
 
 """
 AI-composed Strategy Artifact
@@ -25,7 +25,6 @@ class AssembleStrategyMVP(IStrategy):
     timeframe = '5m'
     can_short = True
 
-    # --- Risk system ---
     minimal_roi = {
         "0": 0.0
     }
@@ -34,31 +33,32 @@ class AssembleStrategyMVP(IStrategy):
     trailing_stop_positive = 0.0
     trailing_stop_positive_offset = 0.0
     trailing_only_offset_is_reached = False
+
     use_exit_signal = True
     exit_profit_only = False
 
-    # --- Position adjustment ---
+    trade_direction = CategoricalParameter(["onlyLong", "onlyShort", "bothway"], default="bothway", space="buy")
+
     position_adjustment_enable = True
     max_entry_position_adjustment = 1
     stake_split = 2.0
     dca_trigger = 0.012
     reduce_profit_buffer = 0.0015
-    ma_fast_len = 9
-    ma_slow_len = 21
-    reduce_fraction = 0.5
 
-    # --- Hyperoptable parameters ---
+    add_below_mid = 0.30
+    reduce_below_mid = 0.20
+    add_low_zone = 0.40
+    reduce_low_zone = 0.20
+
+    reduce_above_mid = 0.30
+    add_above_mid = 0.20
+    reduce_high_zone = 0.50
+    add_high_zone = 0.20
+
     base_ema_len = IntParameter(120, 200, default=144, space='buy')
-    fast_ema_len = IntParameter(4, 10, default=6, space='buy')
-    slow_ema_len = IntParameter(10, 21, default=13, space='buy')
     base_offset = DecimalParameter(0.008, 0.03, default=0.01618, decimals=5, space='buy')
     zone_step = DecimalParameter(0.002, 0.012, default=0.005, decimals=4, space='buy')
-
-    # Bollinger filter / reaction parameters
-    bb_len = IntParameter(18, 40, default=20, space='buy')
-    bb_std = DecimalParameter(1.6, 2.8, default=2.0, decimals=2, space='buy')
-    bb_squeeze_thresh = DecimalParameter(0.010, 0.050, default=0.020, decimals=4, space='buy')
-    zone_touch_buffer = DecimalParameter(0.000, 0.003, default=0.0005, decimals=4, space='buy')
+    vwma_len = IntParameter(9, 9, default=9, space='buy')
 
     order_types = {
         'entry': 'limit',
@@ -67,10 +67,16 @@ class AssembleStrategyMVP(IStrategy):
         'stoploss_on_exchange': False,
     }
 
+    @staticmethod
+    def _cross_up(a, b):
+        return (a > b) & (a.shift(1) <= b.shift(1))
+
+    @staticmethod
+    def _cross_down(a, b):
+        return (a < b) & (a.shift(1) >= b.shift(1))
+
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
         dataframe['ema_mid'] = ta.EMA(dataframe, timeperiod=int(self.base_ema_len.value))
-        dataframe['ema_fast'] = ta.EMA(dataframe, timeperiod=int(self.fast_ema_len.value))
-        dataframe['ema_slow'] = ta.EMA(dataframe, timeperiod=int(self.slow_ema_len.value))
 
         b = float(self.base_offset.value)
         s = float(self.zone_step.value)
@@ -83,58 +89,22 @@ class AssembleStrategyMVP(IStrategy):
         dataframe['l2'] = dataframe['ema_mid'] * (1.0 - b - s)
         dataframe['l3'] = dataframe['ema_mid'] * (1.0 - b - 2.0 * s)
 
-        dataframe['in_high_zone'] = (
-            (dataframe['close'] >= dataframe['u1']) &
-            (dataframe['close'] <= dataframe['u3'])
-        ).astype('int8')
-
-        dataframe['in_low_zone'] = (
-            (dataframe['close'] <= dataframe['l1']) &
-            (dataframe['close'] >= dataframe['l3'])
-        ).astype('int8')
-
+        dataframe['in_high_zone'] = ((dataframe['close'] >= dataframe['u1']) & (dataframe['close'] <= dataframe['u3'])).astype('int8')
+        dataframe['in_low_zone'] = ((dataframe['close'] <= dataframe['l1']) & (dataframe['close'] >= dataframe['l3'])).astype('int8')
         dataframe['above_high_zone'] = (dataframe['close'] > dataframe['u3']).astype('int8')
         dataframe['below_low_zone'] = (dataframe['close'] < dataframe['l3']).astype('int8')
 
-        dataframe['cross_up'] = (
-            (dataframe['ema_fast'] > dataframe['ema_slow']) &
-            (dataframe['ema_fast'].shift(1) <= dataframe['ema_slow'].shift(1))
-        ).astype('int8')
+        price_vwma1 = dataframe['high'].where(dataframe['close'] >= dataframe['open'], dataframe['low'])
+        price_vwma2 = dataframe['low'].where(dataframe['close'] >= dataframe['open'], dataframe['high'])
+        vol = dataframe['volume']
+        w = int(self.vwma_len.value)
 
-        dataframe['cross_down'] = (
-            (dataframe['ema_fast'] < dataframe['ema_slow']) &
-            (dataframe['ema_fast'].shift(1) >= dataframe['ema_slow'].shift(1))
-        ).astype('int8')
+        vol_sum = vol.rolling(w, min_periods=w).sum()
+        dataframe['vwma1'] = (price_vwma1 * vol).rolling(w, min_periods=w).sum() / vol_sum.replace(0, float('nan'))
+        dataframe['vwma2'] = (price_vwma2 * vol).rolling(w, min_periods=w).sum() / vol_sum.replace(0, float('nan'))
 
-        # Bollinger band with squeeze gating in middle zone
-        bb = ta.BBANDS(
-            dataframe,
-            timeperiod=int(self.bb_len.value),
-            nbdevup=float(self.bb_std.value),
-            nbdevdn=float(self.bb_std.value),
-            matype=0
-        )
-        dataframe['bb_upper'] = bb['upperband']
-        dataframe['bb_mid'] = bb['middleband']
-        dataframe['bb_lower'] = bb['lowerband']
-        dataframe['bb_width'] = (dataframe['bb_upper'] - dataframe['bb_lower']) / dataframe['bb_mid'].replace(0, float('nan'))
-
-        dataframe['bb_mid_zone'] = (
-            (dataframe['close'] < dataframe['u1']) &
-            (dataframe['close'] > dataframe['l1'])
-        ).astype('int8')
-        dataframe['bb_squeeze'] = (dataframe['bb_width'] <= float(self.bb_squeeze_thresh.value)).astype('int8')
-        dataframe['suppress_cross_signal'] = (
-            (dataframe['bb_mid_zone'] == 1) &
-            (dataframe['bb_squeeze'] == 1)
-        ).astype('int8')
-
-        # Touch signals for reaction at u1/u2/l1/l2
-        touch_buf = float(self.zone_touch_buffer.value)
-        dataframe['touch_u1'] = (dataframe['high'] >= (dataframe['u1'] * (1.0 - touch_buf))).astype('int8')
-        dataframe['touch_u2'] = (dataframe['high'] >= (dataframe['u2'] * (1.0 - touch_buf))).astype('int8')
-        dataframe['touch_l1'] = (dataframe['low'] <= (dataframe['l1'] * (1.0 + touch_buf))).astype('int8')
-        dataframe['touch_l2'] = (dataframe['low'] <= (dataframe['l2'] * (1.0 + touch_buf))).astype('int8')
+        dataframe['cross_up'] = self._cross_up(dataframe['vwma1'], dataframe['vwma2']).astype('int8')
+        dataframe['cross_down'] = self._cross_down(dataframe['vwma1'], dataframe['vwma2']).astype('int8')
 
         return dataframe
 
@@ -143,36 +113,20 @@ class AssembleStrategyMVP(IStrategy):
         dataframe['enter_short'] = 0
         dataframe['enter_tag'] = None
 
-        cross_allowed = dataframe['suppress_cross_signal'] == 0
-        long_cross = (dataframe['cross_up'] == 1) & cross_allowed
-        short_cross = (dataframe['cross_down'] == 1) & cross_allowed
+        long_cross = dataframe['cross_up'] == 1
+        short_cross = dataframe['cross_down'] == 1
 
-        long_low_priority = long_cross & (dataframe['in_low_zone'] == 1)
-        long_neutral = long_cross & (dataframe['in_high_zone'] == 0)
+        dataframe.loc[long_cross, 'enter_long'] = 1
+        dataframe.loc[long_cross, 'enter_tag'] = 'L_vwma_cross_up'
 
-        dataframe.loc[long_low_priority, 'enter_long'] = 1
-        dataframe.loc[long_low_priority, 'enter_tag'] = 'L_cross_lowzone_priority'
+        dataframe.loc[short_cross, 'enter_short'] = 1
+        dataframe.loc[short_cross, 'enter_tag'] = 'S_vwma_cross_down'
 
-        dataframe.loc[long_neutral & (dataframe['enter_long'] == 0), 'enter_long'] = 1
-        dataframe.loc[long_neutral & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'L_cross_neutral'
-
-        short_high_priority = short_cross & (dataframe['in_high_zone'] == 1)
-        short_neutral = short_cross & (dataframe['in_low_zone'] == 0)
-
-        dataframe.loc[short_high_priority, 'enter_short'] = 1
-        dataframe.loc[short_high_priority, 'enter_tag'] = 'S_cross_highzone_priority'
-
-        dataframe.loc[short_neutral & (dataframe['enter_short'] == 0), 'enter_short'] = 1
-        dataframe.loc[short_neutral & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'S_cross_neutral'
-
-        # If flat in backtest context, place limit-entry style signals near reaction levels
-        dataframe.loc[(dataframe['touch_l1'] == 1) | (dataframe['touch_l2'] == 1), 'enter_long'] = 1
-        dataframe.loc[(dataframe['touch_l1'] == 1) & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'L_limit_l1'
-        dataframe.loc[(dataframe['touch_l2'] == 1) & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'L_limit_l2'
-
-        dataframe.loc[(dataframe['touch_u1'] == 1) | (dataframe['touch_u2'] == 1), 'enter_short'] = 1
-        dataframe.loc[(dataframe['touch_u1'] == 1) & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'S_limit_u1'
-        dataframe.loc[(dataframe['touch_u2'] == 1) & (dataframe['enter_tag'].isna()), 'enter_tag'] = 'S_limit_u2'
+        mode = self.trade_direction.value
+        if mode == 'onlyLong':
+            dataframe['enter_short'] = 0
+        elif mode == 'onlyShort':
+            dataframe['enter_long'] = 0
 
         return dataframe
 
@@ -180,23 +134,8 @@ class AssembleStrategyMVP(IStrategy):
         dataframe['exit_long'] = 0
         dataframe['exit_short'] = 0
 
-        dataframe.loc[
-            (dataframe['cross_down'] == 1) |
-            (dataframe['touch_u1'] == 1) |
-            (dataframe['touch_u2'] == 1) |
-            (dataframe['in_high_zone'] == 1) |
-            (dataframe['above_high_zone'] == 1),
-            'exit_long'
-        ] = 1
-
-        dataframe.loc[
-            (dataframe['cross_up'] == 1) |
-            (dataframe['touch_l1'] == 1) |
-            (dataframe['touch_l2'] == 1) |
-            (dataframe['in_low_zone'] == 1) |
-            (dataframe['below_low_zone'] == 1),
-            'exit_short'
-        ] = 1
+        dataframe.loc[dataframe['cross_down'] == 1, 'exit_long'] = 1
+        dataframe.loc[dataframe['cross_up'] == 1, 'exit_short'] = 1
 
         return dataframe
 
@@ -218,84 +157,63 @@ class AssembleStrategyMVP(IStrategy):
             return None
 
         df, _ = self.dp.get_analyzed_dataframe(trade.pair, self.timeframe)
-        if df is None or len(df) < max(self.ma_fast_len, self.ma_slow_len) + 3:
-            return None
-
-        ma_fast = df['close'].rolling(self.ma_fast_len, min_periods=self.ma_fast_len).mean()
-        ma_slow = df['close'].rolling(self.ma_slow_len, min_periods=self.ma_slow_len).mean()
-
-        fast_now = ma_fast.iloc[-2]
-        slow_now = ma_slow.iloc[-2]
-        fast_prev = ma_fast.iloc[-3]
-        slow_prev = ma_slow.iloc[-3]
-
-        if any(v != v for v in [fast_now, slow_now, fast_prev, slow_prev]):
+        if df is None or len(df) < 3:
             return None
 
         c = df.iloc[-2]
+        p = df.iloc[-3]
 
-        # zone reaction partial close first (u1/u2 for long, l1/l2 for short)
-        if not trade.is_short:
-            if bool(c.get('touch_u2', 0)) and current_profit > 0:
-                reduce_amt = trade.stake_amount * 0.5
-                if min_stake is not None:
-                    reduce_amt = max(reduce_amt, min_stake)
-                if max_stake is not None:
-                    reduce_amt = min(reduce_amt, max_stake)
-                if reduce_amt > 0:
-                    return -reduce_amt
-            if bool(c.get('touch_u1', 0)) and current_profit > 0:
-                reduce_amt = trade.stake_amount * 0.25
-                if min_stake is not None:
-                    reduce_amt = max(reduce_amt, min_stake)
-                if max_stake is not None:
-                    reduce_amt = min(reduce_amt, max_stake)
-                if reduce_amt > 0:
-                    return -reduce_amt
-        else:
-            if bool(c.get('touch_l2', 0)) and current_profit > 0:
-                reduce_amt = trade.stake_amount * 0.5
-                if min_stake is not None:
-                    reduce_amt = max(reduce_amt, min_stake)
-                if max_stake is not None:
-                    reduce_amt = min(reduce_amt, max_stake)
-                if reduce_amt > 0:
-                    return -reduce_amt
-            if bool(c.get('touch_l1', 0)) and current_profit > 0:
-                reduce_amt = trade.stake_amount * 0.25
-                if min_stake is not None:
-                    reduce_amt = max(reduce_amt, min_stake)
-                if max_stake is not None:
-                    reduce_amt = min(reduce_amt, max_stake)
-                if reduce_amt > 0:
-                    return -reduce_amt
+        if any(col not in c for col in ['vwma1', 'vwma2', 'ema_mid', 'in_low_zone', 'in_high_zone']):
+            return None
+
+        v1_now = c['vwma1']
+        v2_now = c['vwma2']
+        v1_prev = p['vwma1']
+        v2_prev = p['vwma2']
+
+        if any(v != v for v in [v1_now, v2_now, v1_prev, v2_prev]):
+            return None
+
+        cross_up = (v1_prev <= v2_prev) and (v1_now > v2_now)
+        cross_down = (v1_prev >= v2_prev) and (v1_now < v2_now)
+
+        in_low_zone = bool(int(c['in_low_zone']) == 1)
+        in_high_zone = bool(int(c['in_high_zone']) == 1)
+        below_mid = bool(c['close'] < c['ema_mid']) if c['ema_mid'] == c['ema_mid'] else False
 
         already_added = trade.nr_of_successful_entries - 1
-        if already_added < int(self.max_entry_position_adjustment):
-            if current_profit <= -float(self.dca_trigger):
-                base_est = max(trade.stake_amount / float(self.stake_split), 0.0)
-                add_stake = base_est
-                if min_stake is not None:
-                    add_stake = max(add_stake, min_stake)
-                if max_stake is not None:
-                    add_stake = min(add_stake, max_stake)
-                if add_stake > 0:
-                    return add_stake
+        if already_added < int(self.max_entry_position_adjustment) and current_profit <= -float(self.dca_trigger):
+            base_est = max(trade.stake_amount / float(self.stake_split), 0.0)
 
-        cross_down = (fast_prev >= slow_prev) and (fast_now < slow_now)
-        cross_up = (fast_prev <= slow_prev) and (fast_now > slow_now)
+            if in_low_zone:
+                add_frac = float(self.add_low_zone)
+            elif in_high_zone:
+                add_frac = float(self.add_high_zone)
+            else:
+                add_frac = float(self.add_below_mid if below_mid else self.add_above_mid)
+
+            add_stake = base_est * add_frac
+            if min_stake is not None:
+                add_stake = max(add_stake, min_stake)
+            if max_stake is not None:
+                add_stake = min(add_stake, max_stake)
+            if add_stake > 0:
+                return add_stake
 
         did_dca = trade.nr_of_successful_entries > 1
         profit_gate = current_profit > float(self.reduce_profit_buffer) if did_dca else current_profit > 0
 
-        reduce_signal = False
-        if (not trade.is_short) and cross_down:
-            reduce_signal = True
-        elif trade.is_short and cross_up:
-            reduce_signal = True
+        reduce_signal = (not trade.is_short and cross_down) or (trade.is_short and cross_up)
 
         if reduce_signal and profit_gate:
-            reduce_amt = trade.stake_amount * float(self.reduce_fraction)
+            if in_high_zone:
+                reduce_frac = float(self.reduce_high_zone)
+            elif in_low_zone:
+                reduce_frac = float(self.reduce_low_zone)
+            else:
+                reduce_frac = float(self.reduce_below_mid if below_mid else self.reduce_above_mid)
+
+            reduce_amt = trade.stake_amount * reduce_frac
             if min_stake is not None:
                 reduce_amt = max(reduce_amt, min_stake)
             if max_stake is not None:

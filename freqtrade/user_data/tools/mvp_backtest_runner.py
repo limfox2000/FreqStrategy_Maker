@@ -4,7 +4,9 @@ import argparse
 import importlib.util
 import json
 import math
-from dataclasses import dataclass
+import re
+import subprocess
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -40,15 +42,6 @@ UNSUITABLE_OVERLAY_TOKENS = (
     "obv",
     "volume",
 )
-
-
-@dataclass
-class Position:
-    side: str
-    open_time: pd.Timestamp
-    open_index: int
-    qty: float
-    entry_price: float
 
 
 def timeframe_to_pandas(timeframe: str) -> str:
@@ -122,10 +115,7 @@ def _is_unsuitable_overlay_indicator(name: str) -> bool:
     return any(token in key for token in UNSUITABLE_OVERLAY_TOKENS)
 
 
-def extract_indicator_lines(
-    df: pd.DataFrame,
-    allowed_columns: set[str] | None = None,
-) -> list[dict[str, Any]]:
+def extract_indicator_lines(df: pd.DataFrame, allowed_columns: set[str] | None = None) -> list[dict[str, Any]]:
     excluded = {
         "date",
         "open",
@@ -149,6 +139,7 @@ def extract_indicator_lines(
             continue
         if _is_unsuitable_overlay_indicator(col):
             continue
+
         series = pd.to_numeric(df[col], errors="coerce")
         valid = series.dropna()
         if valid.empty:
@@ -161,7 +152,6 @@ def extract_indicator_lines(
         median_abs = abs(float(valid.median()))
         if close_median > 0:
             ratio = median_abs / close_median
-            # Overlay only price-like indicators to avoid distorting the K chart scale.
             if ratio < 0.05 or ratio > 20:
                 continue
 
@@ -176,6 +166,7 @@ def extract_indicator_lines(
             points.append({"time": int(timestamps.iat[i]), "value": round(f_value, 6)})
         if len(points) < 2:
             continue
+
         output.append(
             {
                 "name": col,
@@ -286,9 +277,7 @@ def load_ohlcv(pair: str, timeframe: str, timerange: str) -> pd.DataFrame:
         .reset_index()
     )
     if rs.empty:
-        raise RuntimeError(
-            f"Resampled dataframe is empty for timeframe={timeframe} from 1m source in {timerange}"
-        )
+        raise RuntimeError(f"Resampled dataframe is empty for timeframe={timeframe} from 1m source in {timerange}")
     return rs
 
 
@@ -299,179 +288,228 @@ def _downsample(items: list[dict[str, Any]], max_points: int = MAX_SERIES_POINTS
     return items[::step]
 
 
-def simulate(
-    strategy,
-    dataframe: pd.DataFrame,
+def _extract_strategy_name(strategy_file: Path) -> str:
+    text = strategy_file.read_text(encoding="utf-8", errors="ignore")
+    m = re.search(r"class\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(\s*IStrategy\s*\)", text)
+    if m:
+        return m.group(1)
+    return strategy_file.stem
+
+
+def _is_non_strategy_error(lines: list[str]) -> bool:
+    text = "\n".join(lines)
+    tokens = (
+        "Could not load markets",
+        "ExchangeNotAvailable",
+        "Cannot connect to host",
+        "TemporaryError",
+        "download-data",
+    )
+    return any(token in text for token in tokens)
+
+
+def _run_freqtrade_backtesting(
+    strategy_file: Path,
     pair: str,
-    starting_balance: float,
-    tradable_ratio: float,
-) -> dict[str, Any]:
-    df = strategy.populate_indicators(dataframe.copy(), {"pair": pair})
-    indicator_columns = set(df.columns)
-    df = strategy.populate_entry_trend(df, {"pair": pair})
-    df = strategy.populate_exit_trend(df, {"pair": pair})
+    timeframe: str,
+    timerange: str,
+) -> tuple[dict[str, Any], list[dict[str, Any]], str]:
+    strategy_name = _extract_strategy_name(strategy_file)
+    result_dir = Path("/freqtrade/user_data/backtest_results/mvp_native")
+    result_dir.mkdir(parents=True, exist_ok=True)
 
-    for col in ("enter_long", "enter_short", "exit_long", "exit_short"):
-        if col not in df.columns:
-            df[col] = 0
-        df[col] = df[col].fillna(0)
-
-    cash = starting_balance
-    position: Position | None = None
-    trades: list[dict[str, Any]] = []
-    markers: list[dict[str, Any]] = []
-    equity_points: list[dict[str, Any]] = []
-    drawdown_points: list[dict[str, Any]] = []
-    peak_equity = starting_balance
-
-    for idx in range(1, len(df)):
-        row = df.iloc[idx]
-        timestamp = pd.Timestamp(row["date"])
-        price = float(row["close"])
-        unix_time = int(timestamp.timestamp())
-
-        enter_long = bool(row.get("enter_long", 0))
-        enter_short = bool(row.get("enter_short", 0))
-        exit_long = bool(row.get("exit_long", 0))
-        exit_short = bool(row.get("exit_short", 0))
-
-        if position is None:
-            if enter_long ^ enter_short:
-                side = "long" if enter_long else "short"
-                stake = cash * tradable_ratio
-                if stake <= 0:
-                    continue
-                qty = stake / price
-                entry_fee = stake * FEE_RATE
-                cash -= entry_fee
-                position = Position(
-                    side=side,
-                    open_time=timestamp,
-                    open_index=idx,
-                    qty=qty,
-                    entry_price=price,
-                )
-                markers.append(
-                    {
-                        "time": unix_time,
-                        "position": "belowBar" if side == "long" else "aboveBar",
-                        "color": "#16a34a" if side == "long" else "#ef4444",
-                        "shape": "arrowUp" if side == "long" else "arrowDown",
-                        "text": f"Entry {side}",
-                    }
-                )
-        else:
-            should_close = False
-            close_reason = "signal"
-            if position.side == "long" and (exit_long or enter_short):
-                should_close = True
-            if position.side == "short" and (exit_short or enter_long):
-                should_close = True
-
-            if should_close:
-                gross = (
-                    (price - position.entry_price) * position.qty
-                    if position.side == "long"
-                    else (position.entry_price - price) * position.qty
-                )
-                exit_fee = (position.qty * price) * FEE_RATE
-                pnl = gross - exit_fee
-                cash += pnl
-                trades.append(
-                    {
-                        "side": position.side,
-                        "open_time": position.open_time.isoformat(),
-                        "close_time": timestamp.isoformat(),
-                        "entry_price": position.entry_price,
-                        "exit_price": price,
-                        "profit_abs": pnl,
-                        "profit_pct": (pnl / starting_balance) * 100.0,
-                        "duration": idx - position.open_index,
-                        "reason": close_reason,
-                    }
-                )
-                markers.append(
-                    {
-                        "time": unix_time,
-                        "position": "aboveBar" if position.side == "long" else "belowBar",
-                        "color": "#eab308",
-                        "shape": "circle",
-                        "text": f"Exit {position.side}",
-                    }
-                )
-                position = None
-
-        unrealized = 0.0
-        if position is not None:
-            if position.side == "long":
-                unrealized = (price - position.entry_price) * position.qty
-            else:
-                unrealized = (position.entry_price - price) * position.qty
-
-        equity = cash + unrealized
-        peak_equity = max(peak_equity, equity)
-        drawdown = 0.0 if peak_equity <= 0 else ((peak_equity - equity) / peak_equity) * 100.0
-
-        equity_points.append({"time": unix_time, "value": round(equity, 4)})
-        drawdown_points.append({"time": unix_time, "value": round(drawdown, 4)})
-
-    if position is not None:
-        last = df.iloc[-1]
-        timestamp = pd.Timestamp(last["date"])
-        price = float(last["close"])
-        gross = (
-            (price - position.entry_price) * position.qty
-            if position.side == "long"
-            else (position.entry_price - price) * position.qty
-        )
-        exit_fee = (position.qty * price) * FEE_RATE
-        pnl = gross - exit_fee
-        cash += pnl
-        trades.append(
-            {
-                "side": position.side,
-                "open_time": position.open_time.isoformat(),
-                "close_time": timestamp.isoformat(),
-                "entry_price": position.entry_price,
-                "exit_price": price,
-                "profit_abs": pnl,
-                "profit_pct": (pnl / starting_balance) * 100.0,
-                "duration": len(df) - 1 - position.open_index,
-                "reason": "force_close",
-            }
-        )
-
-    wins = sum(1 for trade in trades if trade["profit_abs"] > 0)
-    gross_profit = sum(trade["profit_abs"] for trade in trades if trade["profit_abs"] > 0)
-    gross_loss = sum(trade["profit_abs"] for trade in trades if trade["profit_abs"] < 0)
-    end_equity = equity_points[-1]["value"] if equity_points else starting_balance
-    max_drawdown_pct = max((point["value"] for point in drawdown_points), default=0.0)
-
-    start_close = float(df.iloc[0]["close"])
-    end_close = float(df.iloc[-1]["close"])
-
-    kline = [
-        {
-            "time": int(pd.Timestamp(r["date"]).timestamp()),
-            "open": float(r["open"]),
-            "high": float(r["high"]),
-            "low": float(r["low"]),
-            "close": float(r["close"]),
-        }
-        for _, r in df.iterrows()
+    command = [
+        "freqtrade",
+        "backtesting",
+        "--config",
+        "/freqtrade/user_data/config.json",
+        "--strategy-path",
+        str(strategy_file.parent),
+        "--strategy",
+        strategy_name,
+        "--pairs",
+        pair,
+        "--timeframe",
+        timeframe,
+        "--timerange",
+        timerange,
+        "--datadir",
+        "/freqtrade/user_data/data/binance",
+        "--export",
+        "trades",
+        "--cache",
+        "none",
+        "--backtest-directory",
+        str(result_dir),
     ]
 
+    process = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+    )
+    stdout, _ = process.communicate(timeout=1800)
+    lines = (stdout or "").splitlines()
+    for line in lines:
+        print(line)
+
+    if process.returncode != 0:
+        tail = "\n".join([line for line in lines if line.strip()][-40:])
+        if _is_non_strategy_error(lines):
+            raise RuntimeError(f"[mvp-backtest][non-strategy] freqtrade backtesting failed\n{tail}")
+        raise RuntimeError(f"freqtrade backtesting exited with code {process.returncode}\n{tail}")
+
+    latest_ref = result_dir / ".last_result.json"
+    latest_name: str | None = None
+    if latest_ref.exists():
+        latest_obj = json.loads(latest_ref.read_text(encoding="utf-8-sig"))
+        latest_name = str(latest_obj.get("latest_backtest") or "").strip() or None
+
+    if latest_name:
+        candidate = result_dir / latest_name
+    else:
+        zips = sorted(result_dir.glob("backtest-result-*.zip"), key=lambda p: p.stat().st_mtime, reverse=True)
+        if not zips:
+            raise RuntimeError("Backtest completed but result archive not found")
+        candidate = zips[0]
+
+    if not candidate.exists():
+        raise RuntimeError(f"Backtest result file not found: {candidate}")
+
+    if candidate.suffix == ".zip":
+        with zipfile.ZipFile(candidate, "r") as zf:
+            json_members = [
+                name
+                for name in zf.namelist()
+                if name.endswith(".json")
+                and not name.endswith("_config.json")
+                and "meta" not in name
+            ]
+            if not json_members:
+                raise RuntimeError(f"No result JSON in archive: {candidate}")
+            with zf.open(json_members[0]) as fp:
+                payload = json.load(fp)
+    else:
+        payload = json.loads(candidate.read_text(encoding="utf-8-sig"))
+
+    strategy_map = payload.get("strategy", {})
+    if not isinstance(strategy_map, dict) or not strategy_map:
+        raise RuntimeError("Invalid backtest payload: missing strategy results")
+    strategy_result = strategy_map.get(strategy_name)
+    if not isinstance(strategy_result, dict):
+        strategy_result = next(iter(strategy_map.values()))
+    if not isinstance(strategy_result, dict):
+        raise RuntimeError("Invalid backtest payload: invalid strategy section")
+
+    trades = strategy_result.get("trades", [])
+    if not isinstance(trades, list):
+        trades = []
+
+    return strategy_result, trades, strategy_name
+
+
+def _build_series_and_summary(
+    strategy,
+    ohlcv: pd.DataFrame,
+    trades: list[dict[str, Any]],
+    strategy_result: dict[str, Any],
+    pair: str,
+    starting_balance_default: float,
+    tradable_ratio: float,
+) -> dict[str, Any]:
+    df = strategy.populate_indicators(ohlcv.copy(), {"pair": pair})
+    indicator_columns = set(df.columns)
+
+    timestamps = (pd.to_datetime(ohlcv["date"], utc=True).astype("int64") // 10**9).astype(int)
+    kline = [
+        {
+            "time": int(timestamps.iat[i]),
+            "open": float(ohlcv.iloc[i]["open"]),
+            "high": float(ohlcv.iloc[i]["high"]),
+            "low": float(ohlcv.iloc[i]["low"]),
+            "close": float(ohlcv.iloc[i]["close"]),
+        }
+        for i in range(len(ohlcv))
+    ]
+
+    markers: list[dict[str, Any]] = []
+    close_profit_by_ts: dict[int, float] = {}
+    position_adjustments = 0
+
+    for trade in trades:
+        open_ts = int(_to_float(trade.get("open_timestamp"), 0.0) / 1000)
+        close_ts = int(_to_float(trade.get("close_timestamp"), 0.0) / 1000)
+        is_short = bool(trade.get("is_short", False))
+        side = "short" if is_short else "long"
+
+        if open_ts > 0:
+            markers.append(
+                {
+                    "time": open_ts,
+                    "position": "aboveBar" if is_short else "belowBar",
+                    "color": "#ef4444" if is_short else "#16a34a",
+                    "shape": "arrowDown" if is_short else "arrowUp",
+                    "text": f"Entry {side}",
+                }
+            )
+
+        if close_ts > 0:
+            markers.append(
+                {
+                    "time": close_ts,
+                    "position": "belowBar" if is_short else "aboveBar",
+                    "color": "#eab308",
+                    "shape": "circle",
+                    "text": f"Exit {side}",
+                }
+            )
+
+        profit_abs = _to_float(trade.get("profit_abs"), 0.0)
+        if close_ts > 0:
+            close_profit_by_ts[close_ts] = close_profit_by_ts.get(close_ts, 0.0) + profit_abs
+
+        orders = trade.get("orders", [])
+        if isinstance(orders, list) and orders:
+            entry_count = sum(1 for o in orders if bool(o.get("ft_is_entry", False)))
+            exit_count = sum(1 for o in orders if not bool(o.get("ft_is_entry", False)))
+            position_adjustments += max(0, entry_count - 1) + max(0, exit_count - 1)
+
+    starting_balance = _to_float(strategy_result.get("starting_balance"), starting_balance_default)
+    equity_points: list[dict[str, Any]] = []
+    drawdown_points: list[dict[str, Any]] = []
+    equity = starting_balance
+    peak = starting_balance
+
+    for ts in timestamps:
+        equity += close_profit_by_ts.get(int(ts), 0.0)
+        peak = max(peak, equity)
+        drawdown = 0.0 if peak <= 0 else ((peak - equity) / peak) * 100.0
+        equity_points.append({"time": int(ts), "value": round(equity, 4)})
+        drawdown_points.append({"time": int(ts), "value": round(drawdown, 4)})
+
+    total_trades = int(strategy_result.get("total_trades", len(trades)))
+    winrate_raw = _to_float(strategy_result.get("winrate"), 0.0)
+    winrate_pct = winrate_raw * 100.0 if winrate_raw <= 1.0 else winrate_raw
+
+    profit_total = _to_float(strategy_result.get("profit_total"), 0.0)
+    market_change = _to_float(strategy_result.get("market_change"), 0.0)
+    max_drawdown_ratio = _to_float(strategy_result.get("max_drawdown_account"), 0.0)
+
     summary = {
-        "trades": len(trades),
-        "winrate": round((wins / len(trades)) * 100.0, 2) if trades else 0.0,
-        "profit_total_pct": round(((end_equity - starting_balance) / starting_balance) * 100.0, 3),
-        "profit_total_abs": round(end_equity - starting_balance, 3),
-        "max_drawdown_pct": round(max_drawdown_pct, 3),
-        "profit_factor": round(gross_profit / abs(gross_loss), 3) if gross_loss < 0 else None,
-        "market_change_pct": round(((end_close / start_close) - 1.0) * 100.0, 3),
+        "trades": total_trades,
+        "winrate": round(winrate_pct, 2),
+        "profit_total_pct": round(profit_total * 100.0, 3),
+        "profit_total_abs": round(_to_float(strategy_result.get("profit_total_abs"), 0.0), 3),
+        "max_drawdown_pct": round(max_drawdown_ratio * 100.0, 3),
+        "profit_factor": strategy_result.get("profit_factor"),
+        "market_change_pct": round(market_change * 100.0, 3),
         "starting_balance": round(starting_balance, 3),
         "tradable_balance_ratio": round(tradable_ratio, 4),
+        "position_adjustments": int(position_adjustments),
     }
+
     indicator_lines = extract_indicator_lines(df, allowed_columns=indicator_columns)
     series = {
         "kline": _downsample(kline),
@@ -480,7 +518,12 @@ def simulate(
         "drawdown": _downsample(drawdown_points),
         "indicators": indicator_lines,
     }
-    return {"summary": summary, "series": series, "trades": trades[:400]}
+
+    return {
+        "summary": summary,
+        "series": series,
+        "trades": trades[:400],
+    }
 
 
 def main() -> None:
@@ -498,8 +541,9 @@ def main() -> None:
     print(f"[mvp-backtest] loading strategy: {strategy_path}")
     strategy = load_strategy(strategy_path)
     print(f"[mvp-backtest] loading ohlcv: pair={args.pair} timeframe={args.timeframe} range={args.timerange}")
-    df = load_ohlcv(pair=args.pair, timeframe=args.timeframe, timerange=args.timerange)
-    print(f"[mvp-backtest] dataframe rows: {len(df)}")
+    ohlcv = load_ohlcv(pair=args.pair, timeframe=args.timeframe, timerange=args.timerange)
+    print(f"[mvp-backtest] dataframe rows: {len(ohlcv)}")
+
     starting_balance, tradable_ratio = load_capital_config()
     print(
         "[mvp-backtest] capital config: "
@@ -507,10 +551,31 @@ def main() -> None:
         f"max_trade_notional={round(starting_balance * tradable_ratio, 4)}"
     )
 
-    result = simulate(strategy, df, args.pair, starting_balance=starting_balance, tradable_ratio=tradable_ratio)
+    strategy_result, trades, strategy_name = _run_freqtrade_backtesting(
+        strategy_file=strategy_path,
+        pair=args.pair,
+        timeframe=args.timeframe,
+        timerange=args.timerange,
+    )
+    print(
+        f"[mvp-backtest] freqtrade result loaded: strategy={strategy_name} "
+        f"trades={len(trades)}"
+    )
+
+    result = _build_series_and_summary(
+        strategy=strategy,
+        ohlcv=ohlcv,
+        trades=trades,
+        strategy_result=strategy_result,
+        pair=args.pair,
+        starting_balance_default=starting_balance,
+        tradable_ratio=tradable_ratio,
+    )
     result["artifacts"] = {
         "strategy_file": args.strategy,
         "output_file": args.output,
+        "engine": "freqtrade-backtesting",
+        "strategy_name": strategy_name,
     }
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

@@ -680,3 +680,19 @@ Traceback (most recent call last):
   File "C:\Users\Jeff\AppData\Local\Programs\Python\Python310\lib\ssl.py", line 1130, in read
     return self._sslobj.read(len, buffer)
 TimeoutError: The read operation timed out
+WARNING:  StatReload detected changes in 'app\schemas\strategy.py'. Reloading...
+INFO:     Started server process [20796]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\strategy_composer.py'. Reloading...
+INFO:     Started server process [39572]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\routers\strategy.py'. Reloading...
+INFO:     Started server process [39504]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app\services\backtest_runner.py'. Reloading...
+INFO:     Started server process [42176]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.

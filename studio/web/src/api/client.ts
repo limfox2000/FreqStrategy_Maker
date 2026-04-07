@@ -106,6 +106,15 @@ export async function composeStrategy(input: {
   });
 }
 
+export async function syncStrategyFromFile(input: { buildId: string }) {
+  return request<ComposeResponse>("/api/strategy/sync-file", {
+    method: "POST",
+    body: JSON.stringify({
+      build_id: input.buildId,
+    }),
+  });
+}
+
 export async function runBacktest(input: {
   buildId: string;
   pair: string;

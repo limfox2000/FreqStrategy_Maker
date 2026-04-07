@@ -295,6 +295,30 @@ def _run_job(
         if code == 0:
             break
 
+        non_strategy_failure_tokens = (
+            "[mvp-backtest][non-strategy]",
+            "Could not load markets",
+            "ExchangeNotAvailable",
+            "Cannot connect to host",
+            "TemporaryError",
+        )
+        is_non_strategy_failure = any(
+            any(token in line for token in non_strategy_failure_tokens)
+            for line in run_lines
+        )
+        if is_non_strategy_failure:
+            run_tail = "\n".join([line for line in run_lines if line.strip()][-40:])
+            _update_job(
+                job_id,
+                status="failed",
+                error=(
+                    f"backtest failed due to environment/exchange issue (not strategy code)"
+                    + (f"\n{run_tail}" if run_tail else "")
+                ),
+                repair_rounds=repair_rounds,
+            )
+            return
+
         if repair_rounds >= MAX_BACKTEST_REPAIR_ROUNDS:
             run_tail = "\n".join([line for line in run_lines if line.strip()][-24:])
             _update_job(

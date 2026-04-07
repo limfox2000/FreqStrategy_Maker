@@ -8,7 +8,7 @@ from typing import Any
 
 from fastapi import HTTPException
 
-from ..schemas.strategy import ComposeStrategyRequest, ComposeStrategyResponse
+from ..schemas.strategy import ComposeStrategyRequest, ComposeStrategyResponse, SyncStrategyFromFileRequest
 from .ai_runtime import get_ai_identity, optimize_strategy_code
 from .llm_adapter import LlmAdapterError, complete_text
 from .storage import BUILD_DIR, GENERATED_STRATEGY_DIR, MODULE_DIR, new_id, read_json, write_json
@@ -558,6 +558,73 @@ def repair_strategy_file(strategy_file: Path, strategy_name: str) -> None:
     _validate_strategy_code(repaired, strategy_name=strategy_name)
     if repaired != original:
         strategy_file.write_text(repaired, encoding="utf-8")
+
+
+def sync_strategy_from_file(payload: SyncStrategyFromFileRequest) -> ComposeStrategyResponse:
+    build = load_build(payload.build_id)
+    strategy_file = Path(str(build["strategy_file"]))
+    if not strategy_file.exists():
+        raise HTTPException(status_code=404, detail=f"strategy file not found: {strategy_file}")
+
+    strategy_name = _safe_class_name(str(build.get("strategy_name", strategy_file.stem)))
+    strategy_code = strategy_file.read_text(encoding="utf-8-sig").replace("\r\n", "\n").strip()
+    if not strategy_code:
+        raise HTTPException(status_code=400, detail="strategy file is empty")
+    strategy_code = strategy_code + "\n"
+
+    validation_passed, validation_logs, validation_error = _run_static_validation(strategy_code, strategy_name)
+    if not validation_passed:
+        raise HTTPException(status_code=400, detail=f"strategy file check failed: {validation_error or 'unknown error'}")
+
+    warnings: list[str] = []
+    lint_ok = True
+    try:
+        ast.parse(strategy_code)
+    except SyntaxError as exc:
+        lint_ok = False
+        warnings.append(f"SyntaxError: {exc}")
+
+    if not lint_ok:
+        raise HTTPException(status_code=400, detail=f"strategy file check failed: {'; '.join(warnings)}")
+
+    source_versions = build.get("source_versions", {})
+    if not isinstance(source_versions, dict):
+        source_versions = {}
+    source_versions = {str(key): str(value) for key, value in source_versions.items()}
+
+    new_build_id = new_id("build")
+    optimization_note = "Synced from local strategy file."
+    build_record = {
+        **build,
+        "build_id": new_build_id,
+        "base_build_id": payload.build_id,
+        "parent_build_id": payload.build_id,
+        "strategy_file": str(strategy_file),
+        "strategy_code": strategy_code,
+        "validation_passed": validation_passed,
+        "validation_logs": validation_logs[-120:],
+        "repair_rounds": 0,
+        "lint_ok": lint_ok,
+        "warnings": warnings,
+        "optimization_note": optimization_note,
+        "source_versions": source_versions,
+        "synced_from_file": True,
+        "synced_from_build_id": payload.build_id,
+    }
+    write_json(BUILD_DIR / f"{new_build_id}.json", build_record)
+
+    return ComposeStrategyResponse(
+        build_id=new_build_id,
+        strategy_file=str(strategy_file),
+        lint_ok=lint_ok,
+        warnings=warnings,
+        optimization_note=optimization_note,
+        source_versions=source_versions,
+        strategy_code=strategy_code,
+        validation_passed=validation_passed,
+        validation_logs=validation_logs[-120:],
+        repair_rounds=0,
+    )
 
 
 def load_build(build_id: str) -> dict:

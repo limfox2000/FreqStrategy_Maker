@@ -32,6 +32,10 @@ class ComposeStrategyRequest(BaseModel):
     validation: StrategyValidationConfig = Field(default_factory=StrategyValidationConfig)
 
 
+class SyncStrategyFromFileRequest(BaseModel):
+    build_id: str = Field(min_length=5)
+
+
 class ComposeStrategyResponse(BaseModel):
     build_id: str
     strategy_file: str
