@@ -1,0 +1,14 @@
+{
+  "naming_standard": "<Factor>_<Indicator>_<Property> e.g. Matrix_baseEMA_len",
+  "key_regex": "^[A-Z][A-Za-z0-9]*_[a-z][A-Za-z0-9]*_[a-z][A-Za-z0-9_]*$",
+  "variables": {
+    "Matrix_baseEMA_len": {
+      "min": 1,
+      "description": "Base EMA period",
+      "default": 144,
+      "type": "int",
+      "max": 2000
+    }
+  },
+  "updated_at": "2026-04-12T12:07:06.4419249Z"
+}

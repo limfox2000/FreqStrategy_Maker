@@ -13,10 +13,15 @@ DATA_DIR = API_DIR / "data"
 MODULE_DIR = DATA_DIR / "modules"
 BUILD_DIR = DATA_DIR / "builds"
 JOB_DIR = DATA_DIR / "jobs"
+PAIR_PROFILE_PATH = DATA_DIR / "pair_profiles.json"
+PARAM_REGISTRY_PATH = DATA_DIR / "param_registry.json"
 
 FREQTRADE_DIR = ROOT_DIR / "freqtrade"
+FREQTRADE_USER_DATA_DIR = FREQTRADE_DIR / "user_data"
 GENERATED_STRATEGY_DIR = FREQTRADE_DIR / "user_data" / "strategies" / "generated"
 BACKTEST_RESULTS_DIR = FREQTRADE_DIR / "user_data" / "backtest_results"
+FREQTRADE_PAIR_PROFILE_PATH = FREQTRADE_USER_DATA_DIR / "pair_profiles.json"
+FREQTRADE_PARAM_REGISTRY_PATH = FREQTRADE_USER_DATA_DIR / "param_registry.json"
 
 
 def ensure_directories() -> None:
@@ -25,6 +30,7 @@ def ensure_directories() -> None:
         MODULE_DIR,
         BUILD_DIR,
         JOB_DIR,
+        FREQTRADE_USER_DATA_DIR,
         GENERATED_STRATEGY_DIR,
         BACKTEST_RESULTS_DIR,
     ):

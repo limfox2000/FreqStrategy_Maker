@@ -1,6 +1,7 @@
 ﻿import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type {
+  BacktestScenario,
   BacktestResult,
   CardType,
   CardZone,
@@ -25,6 +26,7 @@ type Store = {
   pair: string;
   timeframe: string;
   timerange: string;
+  backtestScenarios: BacktestScenario[];
   buildId?: string;
   strategyFile?: string;
   lintWarnings: string[];
@@ -57,6 +59,11 @@ type Store = {
   setStrategyMeta: (name: string) => void;
   setCanShort: (canShort: boolean) => void;
   setBacktestConfig: (key: "pair" | "timeframe" | "timerange", value: string) => void;
+  addBacktestScenario: () => void;
+  updateBacktestScenario: (id: string, key: "name" | "pair" | "timeframe" | "timerange", value: string) => void;
+  toggleBacktestScenario: (id: string) => void;
+  removeBacktestScenario: (id: string) => void;
+  applyBacktestScenario: (id: string) => void;
   setComposeResult: (payload: { buildId: string; strategyFile: string; warnings: string[] }) => void;
   setJob: (jobId: string) => void;
   setBacktestResult: (result: BacktestResult) => void;
@@ -73,6 +80,7 @@ type PersistedState = Pick<
   | "pair"
   | "timeframe"
   | "timerange"
+  | "backtestScenarios"
   | "buildId"
   | "strategyFile"
   | "lintWarnings"
@@ -189,10 +197,36 @@ function removeId(list: string[], id: string): string[] {
   return list.filter((item) => item !== id);
 }
 
+function createBacktestScenario(seed: {
+  name?: string;
+  pair: string;
+  timeframe: string;
+  timerange: string;
+  checked?: boolean;
+  id?: string;
+  createdAt?: number;
+  updatedAt?: number;
+}): BacktestScenario {
+  const now = Date.now();
+  return {
+    id: seed.id ?? uniqueId("btsc"),
+    name: seed.name?.trim() || "回测场景",
+    pair: seed.pair.trim(),
+    timeframe: seed.timeframe.trim(),
+    timerange: seed.timerange.trim(),
+    checked: Boolean(seed.checked),
+    createdAt: seed.createdAt ?? now,
+    updatedAt: seed.updatedAt ?? now,
+  };
+}
+
 function defaultPersistedState(): PersistedState {
   const indicatorCard = createNewCard("indicator_factor", "workbench", undefined, { x: 12, y: 12 });
   const positionCard = createNewCard("position_adjustment", "workbench", undefined, { x: 252, y: 12 });
   const riskCard = createNewCard("risk_system", "workbench", undefined, { x: 492, y: 12 });
+  const defaultPair = "XRP/USDT:USDT";
+  const defaultTimeframe = "1m";
+  const defaultTimerange = "20251220-20260306";
 
   const cards: Record<string, StrategyCard> = {
     [indicatorCard.id]: indicatorCard,
@@ -214,9 +248,18 @@ function defaultPersistedState(): PersistedState {
     },
     strategyName: "AssembleStrategyMVP",
     canShort: true,
-    pair: "XRP/USDT:USDT",
-    timeframe: "1m",
-    timerange: "20251220-20260306",
+    pair: defaultPair,
+    timeframe: defaultTimeframe,
+    timerange: defaultTimerange,
+    backtestScenarios: [
+      createBacktestScenario({
+        name: "默认场景",
+        pair: defaultPair,
+        timeframe: defaultTimeframe,
+        timerange: defaultTimerange,
+        checked: false,
+      }),
+    ],
     lintWarnings: [],
     buildId: undefined,
     strategyFile: undefined,
@@ -275,6 +318,42 @@ function normalizePersistedState(input: Partial<PersistedState>): PersistedState
   const selectedCardId = input.selectedCardId && cards[input.selectedCardId]
     ? input.selectedCardId
     : workbench[0] ?? vault[0];
+  const pair = input.pair?.trim() || fallback.pair;
+  const timeframe = input.timeframe?.trim() || fallback.timeframe;
+  const timerange = input.timerange?.trim() || fallback.timerange;
+  const scenarioSeeds = Array.isArray(input.backtestScenarios) ? input.backtestScenarios : [];
+  const normalizedScenarios = scenarioSeeds
+    .map((item) =>
+      createBacktestScenario({
+        id: item?.id,
+        name: item?.name,
+        pair: String(item?.pair ?? pair),
+        timeframe: String(item?.timeframe ?? timeframe),
+        timerange: String(item?.timerange ?? timerange),
+        checked: Boolean(item?.checked),
+        createdAt: typeof item?.createdAt === "number" ? item.createdAt : undefined,
+        updatedAt: typeof item?.updatedAt === "number" ? item.updatedAt : undefined,
+      }),
+    )
+    .filter((item) => item.pair && item.timeframe && item.timerange);
+
+  const backtestScenarios = normalizedScenarios.length > 0
+    ? normalizedScenarios
+    : [
+        createBacktestScenario({
+          name: "默认场景",
+          pair,
+          timeframe,
+          timerange,
+          checked: false,
+        }),
+      ];
+  const firstCheckedIndex = backtestScenarios.findIndex((item) => item.checked);
+  if (firstCheckedIndex >= 0) {
+    backtestScenarios.forEach((item, idx) => {
+      item.checked = idx === firstCheckedIndex;
+    });
+  }
 
   return {
     selectedCardId,
@@ -290,9 +369,10 @@ function normalizePersistedState(input: Partial<PersistedState>): PersistedState
     },
     strategyName: input.strategyName?.trim() || fallback.strategyName,
     canShort: typeof input.canShort === "boolean" ? input.canShort : fallback.canShort,
-    pair: input.pair?.trim() || fallback.pair,
-    timeframe: input.timeframe?.trim() || fallback.timeframe,
-    timerange: input.timerange?.trim() || fallback.timerange,
+    pair,
+    timeframe,
+    timerange,
+    backtestScenarios,
     lintWarnings: Array.isArray(input.lintWarnings) ? input.lintWarnings : [],
     buildId: input.buildId,
     strategyFile: input.strategyFile,
@@ -312,6 +392,7 @@ function toPersistedState(state: Store): PersistedState {
     pair: state.pair,
     timeframe: state.timeframe,
     timerange: state.timerange,
+    backtestScenarios: state.backtestScenarios,
     lintWarnings: state.lintWarnings,
     buildId: state.buildId,
     strategyFile: state.strategyFile,
@@ -598,6 +679,75 @@ export const useStrategyStore = create<Store>()(
       setStrategyMeta: (name) => set({ strategyName: name }),
       setCanShort: (canShort) => set({ canShort }),
       setBacktestConfig: (key, value) => set({ [key]: value } as Pick<Store, typeof key>),
+      addBacktestScenario: () =>
+        set((state) => {
+          const index = state.backtestScenarios.length + 1;
+          const scenario = createBacktestScenario({
+            name: `场景 ${index}`,
+            pair: state.pair,
+            timeframe: state.timeframe,
+            timerange: state.timerange,
+            checked: false,
+          });
+          return {
+            backtestScenarios: [scenario, ...state.backtestScenarios],
+          };
+        }),
+      updateBacktestScenario: (id, key, value) =>
+        set((state) => ({
+          backtestScenarios: state.backtestScenarios.map((item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  [key]: value,
+                  updatedAt: Date.now(),
+                }
+              : item,
+          ),
+        })),
+      toggleBacktestScenario: (id) =>
+        set((state) => {
+          const target = state.backtestScenarios.find((item) => item.id === id);
+          if (!target) return state;
+          const nextChecked = !target.checked;
+          return {
+            backtestScenarios: state.backtestScenarios.map((item) => ({
+              ...item,
+              checked: item.id === id ? nextChecked : false,
+              updatedAt: item.id === id ? Date.now() : item.updatedAt,
+            })),
+          };
+        }),
+      removeBacktestScenario: (id) =>
+        set((state) => {
+          const remaining = state.backtestScenarios.filter((item) => item.id !== id);
+          if (remaining.length > 0) {
+            return {
+              backtestScenarios: remaining,
+            };
+          }
+          return {
+            backtestScenarios: [
+              createBacktestScenario({
+                name: "默认场景",
+                pair: state.pair,
+                timeframe: state.timeframe,
+                timerange: state.timerange,
+                checked: false,
+              }),
+            ],
+          };
+        }),
+      applyBacktestScenario: (id) =>
+        set((state) => {
+          const scenario = state.backtestScenarios.find((item) => item.id === id);
+          if (!scenario) return state;
+          return {
+            pair: scenario.pair,
+            timeframe: scenario.timeframe,
+            timerange: scenario.timerange,
+          };
+        }),
       setComposeResult: ({ buildId, strategyFile, warnings }) =>
         set({
           buildId,

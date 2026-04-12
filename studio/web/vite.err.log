@@ -1325,3 +1325,85 @@ G:/Trading/FreqStrategy_Maker/studio/web/src/store/strategyStore.ts:58:70: ERROR
       at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:39
       at TypeScriptParserMixin.allowInAnd (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:12421:16)
       at TypeScriptParserMixin.parseExpression (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\@babel\parser\lib\index.js:10780:17)
+[2m10:56:28[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 3 errors:
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1539:106: ERROR: The character ">" is not valid inside a JSX element
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1539:130: ERROR: The character ">" is not valid inside a JSX element
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1539:146: ERROR: The character ">" is not valid inside a JSX element[39m
+  Plugin: [35mvite:esbuild[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:1520:0
+[33m  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1538|                <div className="zone-subtitle">
+  1539|                  用于策略参数按交易对覆写。查找顺序: 完整交易对 (如 XRP/USDT:USDT) -> 交易对 (XRP/USDT) -> 币种 (XRP) -> 默认属性。
+  1540|                </div>
+     |          ^
+  1541|  
+  1542|                <div className="card-panel-meta">
+  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1540|                </div>
+  1541|  
+  1542|                <div className="card-panel-meta">
+     |            ^
+  1543|                  <div>更新时间: {pairProfileUpdatedAt || "-"}</div>
+  1544|                  <div>Studio 文件: {pairProfileStorageFile || "-"}</div>
+  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1540|                </div>
+  1541|  
+  1542|                <div className="card-panel-meta">
+     |                            ^
+  1543|                  <div>更新时间: {pairProfileUpdatedAt || "-"}</div>
+  1544|                  <div>Studio 文件: {pairProfileStorageFile || "-"}</div>
+  [39m
+      at failureErrorWithLog (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:1472:15)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:755:50
+      at responseCallbacks.<computed> (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:622:9)
+      at handleIncomingPacket (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:677:12)
+      at Socket.readFromStdout (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:600:7)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+[2m10:56:44[22m [31m[1m[vite][22m[39m [31mInternal server error: Transform failed with 3 errors:
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1551:106: ERROR: The character ">" is not valid inside a JSX element
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1551:130: ERROR: The character ">" is not valid inside a JSX element
+G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1551:146: ERROR: The character ">" is not valid inside a JSX element[39m
+  Plugin: [35mvite:esbuild[39m
+  File: [36mG:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx[39m:1532:0
+[33m  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1550|                <div className="zone-subtitle">
+  1551|                  用于策略参数按交易对覆写。查找顺序: 完整交易对 (如 XRP/USDT:USDT) -> 交易对 (XRP/USDT) -> 币种 (XRP) -> 默认属性。
+  1552|                </div>
+     |          ^
+  1553|  
+  1554|                <div className="card-panel-meta">
+  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1552|                </div>
+  1553|  
+  1554|                <div className="card-panel-meta">
+     |            ^
+  1555|                  <div>更新时间: {pairProfileUpdatedAt || "-"}</div>
+  1556|                  <div>Studio 文件: {pairProfileStorageFile || "-"}</div>
+  
+  [33mThe character ">" is not valid inside a JSX element[33m
+  1552|                </div>
+  1553|  
+  1554|                <div className="card-panel-meta">
+     |                            ^
+  1555|                  <div>更新时间: {pairProfileUpdatedAt || "-"}</div>
+  1556|                  <div>Studio 文件: {pairProfileStorageFile || "-"}</div>
+  [39m
+      at failureErrorWithLog (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:1472:15)
+      at G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:755:50
+      at responseCallbacks.<computed> (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:622:9)
+      at handleIncomingPacket (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:677:12)
+      at Socket.readFromStdout (G:\Trading\FreqStrategy_Maker\studio\web\node_modules\esbuild\lib\main.js:600:7)
+      at Socket.emit (node:events:518:28)
+      at addChunk (node:internal/streams/readable:561:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+      at Readable.push (node:internal/streams/readable:392:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)

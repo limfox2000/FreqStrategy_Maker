@@ -3,6 +3,7 @@ import type {
   BacktestResult,
   CardType,
   ModuleCardType,
+  PairProfileResponse,
   ComposeResponse,
   PersonaResponse,
 } from "../types";
@@ -155,5 +156,19 @@ export async function savePersona(content: string) {
   return request<PersonaResponse>("/api/ai/persona", {
     method: "PUT",
     body: JSON.stringify({ content }),
+  });
+}
+
+export async function getPairProfile() {
+  return request<PairProfileResponse>("/api/pair-profile");
+}
+
+export async function savePairProfile(input: {
+  defaults: Record<string, string | number | boolean>;
+  pairs: Record<string, Record<string, string | number | boolean>>;
+}) {
+  return request<PairProfileResponse>("/api/pair-profile", {
+    method: "PUT",
+    body: JSON.stringify(input),
   });
 }

@@ -12,6 +12,8 @@ from fastapi import HTTPException
 from ..schemas.module import CardType, GenerateModuleRequest, GenerateModuleResponse
 from .ai_runtime import AI_SECRETS_PATH, get_ai_identity
 from .llm_adapter import LlmAdapterError, complete_text
+from .param_registry import build_param_registry_prompt_block
+from .pair_profile import build_pair_profile_prompt_block
 from .storage import MODULE_DIR, new_id, write_json
 
 
@@ -38,7 +40,9 @@ def _build_system_prompt(persona_md: str) -> str:
         "2) JSON keys must be: module_code, params, explain.\n"
         "3) module_code must be a Python fragment for IStrategy class body only (no import/class).\n"
         "4) Generate code only for the requested module card type.\n"
-        "5) Respect explicit numeric constraints in requirement."
+        "5) Respect explicit numeric constraints in requirement.\n"
+        "6) When parameters can be pair-specific, preserve default fallback behavior.\n"
+        "7) For pair-configurable keys, only use names from parameter registry."
     )
 
 
@@ -104,6 +108,8 @@ def _build_module_brief(card_type: CardType, can_short: bool) -> str:
 def _build_user_prompt(payload: GenerateModuleRequest, feedback: str | None = None) -> str:
     context = payload.context
     rules = _build_module_brief(payload.card_type, context.can_short)
+    param_registry_block = build_param_registry_prompt_block()
+    pair_profile_block = build_pair_profile_prompt_block(context.pair)
     feedback_block = f"\nPrevious output issue (must fix):\n{feedback.strip()}\n" if feedback else ""
     optimize_block = ""
     if payload.optimize_target_code:
@@ -122,6 +128,8 @@ def _build_user_prompt(payload: GenerateModuleRequest, feedback: str | None = No
         f"- timeframe: {context.timeframe}\n"
         f"- pair: {context.pair}\n"
         f"- can_short: {context.can_short}\n\n"
+        f"{param_registry_block}\n\n"
+        f"{pair_profile_block}\n\n"
         f"User requirement:\n{payload.requirement.strip()}\n"
         f"{optimize_block}"
         f"{feedback_block}\n"

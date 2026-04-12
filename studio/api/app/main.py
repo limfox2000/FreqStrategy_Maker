@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .routers.ai import router as ai_router
 from .routers.backtest import router as backtest_router
 from .routers.module import router as module_router
+from .routers.pair_profile import router as pair_profile_router
 from .routers.strategy import router as strategy_router
 from .services.storage import ensure_directories
 
@@ -38,3 +39,4 @@ app.include_router(module_router, prefix="/api/module", tags=["module"])
 app.include_router(strategy_router, prefix="/api/strategy", tags=["strategy"])
 app.include_router(backtest_router, prefix="/api/backtest", tags=["backtest"])
 app.include_router(ai_router, prefix="/api/ai", tags=["ai"])
+app.include_router(pair_profile_router, prefix="/api/pair-profile", tags=["pair-profile"])

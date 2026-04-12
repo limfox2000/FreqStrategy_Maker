@@ -7,6 +7,7 @@ from pandas import DataFrame
 
 from freqtrade.persistence import Trade
 from freqtrade.strategy import IStrategy, IntParameter, DecimalParameter, CategoricalParameter
+from pair_profile_helper import get_pair_float, get_pair_int
 
 """
 AI-composed Strategy Artifact
@@ -76,10 +77,17 @@ class AssembleStrategyMVP(IStrategy):
         return (a < b) & (a.shift(1) >= b.shift(1))
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        dataframe['ema_mid'] = ta.EMA(dataframe, timeperiod=int(self.base_ema_len.value))
+        pair_key = str(metadata.get('pair') or '')
+        legacy_base_ema_len = get_pair_int(pair_key, "base_ema_len", int(self.base_ema_len.value))
+        base_ema_len = max(1, get_pair_int(pair_key, "Matrix_baseEMA_len", legacy_base_ema_len))
+        base_offset = get_pair_float(pair_key, "base_offset", float(self.base_offset.value))
+        zone_step = get_pair_float(pair_key, "zone_step", float(self.zone_step.value))
+        vwma_len = max(1, get_pair_int(pair_key, "vwma_len", int(self.vwma_len.value)))
 
-        b = float(self.base_offset.value)
-        s = float(self.zone_step.value)
+        dataframe['ema_mid'] = ta.EMA(dataframe, timeperiod=base_ema_len)
+
+        b = base_offset
+        s = zone_step
 
         dataframe['u1'] = dataframe['ema_mid'] * (1.0 + b)
         dataframe['u2'] = dataframe['ema_mid'] * (1.0 + b + s)
@@ -97,7 +105,7 @@ class AssembleStrategyMVP(IStrategy):
         price_vwma1 = dataframe['high'].where(dataframe['close'] >= dataframe['open'], dataframe['low'])
         price_vwma2 = dataframe['low'].where(dataframe['close'] >= dataframe['open'], dataframe['high'])
         vol = dataframe['volume']
-        w = int(self.vwma_len.value)
+        w = vwma_len
 
         vol_sum = vol.rolling(w, min_periods=w).sum()
         dataframe['vwma1'] = (price_vwma1 * vol).rolling(w, min_periods=w).sum() / vol_sum.replace(0, float('nan'))

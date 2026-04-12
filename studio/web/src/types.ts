@@ -78,6 +78,17 @@ export interface BacktestResult {
   error?: string | null;
 }
 
+export interface BacktestScenario {
+  id: string;
+  name: string;
+  pair: string;
+  timeframe: string;
+  timerange: string;
+  checked: boolean;
+  createdAt: number;
+  updatedAt: number;
+}
+
 export interface AiModelPreset {
   key: string;
   label: string;
@@ -96,4 +107,14 @@ export interface AiModelsResponse {
 export interface PersonaResponse {
   content: string;
   updated_at: string;
+}
+
+export type PairProfileValue = string | number | boolean;
+
+export interface PairProfileResponse {
+  defaults: Record<string, PairProfileValue>;
+  pairs: Record<string, Record<string, PairProfileValue>>;
+  updated_at: string;
+  storage_file: string;
+  freqtrade_file: string;
 }

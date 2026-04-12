@@ -1,0 +1,15 @@
+{
+  "defaults": {
+    "Matrix_baseEMA_len": 169,
+    "Matrix_offset_ratio": 1.0
+  },
+  "pairs": {
+    "XRP/USDT:USDT": {
+      "Matrix_baseEMA_len": 144
+    },
+    "XLM/USDT:USDT": {
+      "Matrix_baseEMA_len": 444
+    }
+  },
+  "updated_at": "2026-04-12T12:06:09.958368+00:00"
+}

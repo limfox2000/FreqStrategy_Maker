@@ -6,14 +6,24 @@ import {
   generateModule,
   getAiModels,
   getBacktestResult,
+  getPairProfile,
   getPersona,
   runBacktest,
+  savePairProfile,
   savePersona,
   setActiveAiModel,
   syncStrategyFromFile,
 } from "./api/client";
 import { useStrategyStore } from "./store/strategyStore";
-import type { AiModelPreset, BacktestResult, CardType, ModuleCardType, StrategyCard } from "./types";
+import type {
+  AiModelPreset,
+  BacktestResult,
+  BacktestScenario,
+  CardType,
+  ModuleCardType,
+  PairProfileValue,
+  StrategyCard,
+} from "./types";
 
 const GRID = 24;
 const PAD = 12;
@@ -23,6 +33,7 @@ const CARD_H = 170;
 type AiWorkStage = "idle" | "thinking" | "coding" | "done";
 type ComposeSlotKey = ModuleCardType | "strategy";
 type ComposeSlots = Record<ComposeSlotKey, string | undefined>;
+type PairProfileRow = { id: string; pair: string; attrsText: string };
 
 const AI_STAGE_ORDER: Exclude<AiWorkStage, "idle">[] = ["thinking", "coding", "done"];
 const COMPOSE_SLOT_ORDER: ComposeSlotKey[] = [
@@ -118,6 +129,47 @@ function formatTime(ts: number): string {
   return new Date(ts).toLocaleString("zh-CN", { hour12: false });
 }
 
+function pairProfileRowId(): string {
+  return `pp_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function prettyJson(payload: unknown): string {
+  return JSON.stringify(payload, null, 2);
+}
+
+function parseJsonObject(input: string, label: string): Record<string, unknown> {
+  const trimmed = input.trim();
+  if (!trimmed) return {};
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(trimmed);
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
+    throw new Error(`${label} 不是合法 JSON: ${detail}`);
+  }
+
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`${label} 必须是 JSON 对象`);
+  }
+
+  return parsed as Record<string, unknown>;
+}
+
+function normalizeProfileMap(input: Record<string, unknown>, label: string): Record<string, PairProfileValue> {
+  const output: Record<string, PairProfileValue> = {};
+  Object.entries(input).forEach(([rawKey, value]) => {
+    const key = rawKey.trim();
+    if (!key) return;
+    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+      output[key] = value;
+      return;
+    }
+    throw new Error(`${label} 中键 ${key} 的值必须是 string/number/boolean`);
+  });
+  return output;
+}
+
 export default function App() {
   const cards = useStrategyStore((state) => state.cards);
   const zoneCardIds = useStrategyStore((state) => state.zoneCardIds);
@@ -128,6 +180,7 @@ export default function App() {
   const pair = useStrategyStore((state) => state.pair);
   const timeframe = useStrategyStore((state) => state.timeframe);
   const timerange = useStrategyStore((state) => state.timerange);
+  const backtestScenarios = useStrategyStore((state) => state.backtestScenarios);
   const buildId = useStrategyStore((state) => state.buildId);
   const strategyFile = useStrategyStore((state) => state.strategyFile);
   const lintWarnings = useStrategyStore((state) => state.lintWarnings);
@@ -149,6 +202,11 @@ export default function App() {
   const setStrategyMeta = useStrategyStore((state) => state.setStrategyMeta);
   const setCanShort = useStrategyStore((state) => state.setCanShort);
   const setBacktestConfig = useStrategyStore((state) => state.setBacktestConfig);
+  const addBacktestScenario = useStrategyStore((state) => state.addBacktestScenario);
+  const updateBacktestScenario = useStrategyStore((state) => state.updateBacktestScenario);
+  const toggleBacktestScenario = useStrategyStore((state) => state.toggleBacktestScenario);
+  const removeBacktestScenario = useStrategyStore((state) => state.removeBacktestScenario);
+  const applyBacktestScenario = useStrategyStore((state) => state.applyBacktestScenario);
   const setComposeResult = useStrategyStore((state) => state.setComposeResult);
   const setJob = useStrategyStore((state) => state.setJob);
   const setBacktestResult = useStrategyStore((state) => state.setBacktestResult);
@@ -159,6 +217,8 @@ export default function App() {
   const [panelWidth, setPanelWidth] = useState(560);
   const [resizingPanel, setResizingPanel] = useState(false);
   const [showAiPanel, setShowAiPanel] = useState(false);
+  const [showPairProfilePanel, setShowPairProfilePanel] = useState(false);
+  const [showBacktestScenarioPanel, setShowBacktestScenarioPanel] = useState(false);
   const [composeSlots, setComposeSlots] = useState<ComposeSlots>({
     indicator_factor: undefined,
     position_adjustment: undefined,
@@ -173,6 +233,11 @@ export default function App() {
   const [aiSecretsFile, setAiSecretsFile] = useState("");
   const [personaContent, setPersonaContent] = useState("");
   const [personaUpdatedAt, setPersonaUpdatedAt] = useState("");
+  const [pairProfileDefaultsText, setPairProfileDefaultsText] = useState("{}");
+  const [pairProfileRows, setPairProfileRows] = useState<PairProfileRow[]>([]);
+  const [pairProfileUpdatedAt, setPairProfileUpdatedAt] = useState("");
+  const [pairProfileStorageFile, setPairProfileStorageFile] = useState("");
+  const [pairProfileFreqtradeFile, setPairProfileFreqtradeFile] = useState("");
 
   const [aiWorkStage, setAiWorkStage] = useState<AiWorkStage>("idle");
   const [showAiWorkStage, setShowAiWorkStage] = useState(false);
@@ -206,6 +271,10 @@ export default function App() {
   const activeModel = useMemo(
     () => aiModels.find((item) => item.key === activeModelKey),
     [aiModels, activeModelKey],
+  );
+  const selectedBacktestScenario = useMemo(
+    () => backtestScenarios.find((item) => item.checked),
+    [backtestScenarios],
   );
 
   const contextMenuStyle = useMemo(() => {
@@ -277,6 +346,106 @@ export default function App() {
 
     setAiLoaded(true);
     if (loadError) setError(loadError);
+  };
+
+  const loadPairProfileConfig = async () => {
+    const response = await getPairProfile();
+    setPairProfileDefaultsText(prettyJson(response.defaults ?? {}));
+    const rows = Object.entries(response.pairs ?? {}).map(([pairKey, attrs]) => ({
+      id: pairProfileRowId(),
+      pair: pairKey,
+      attrsText: prettyJson(attrs ?? {}),
+    }));
+    setPairProfileRows(rows.length > 0 ? rows : [{ id: pairProfileRowId(), pair: "", attrsText: "{}" }]);
+    setPairProfileUpdatedAt(response.updated_at || "");
+    setPairProfileStorageFile(response.storage_file || "");
+    setPairProfileFreqtradeFile(response.freqtrade_file || "");
+  };
+
+  const handleOpenPairProfilePanel = async () => {
+    setShowPairProfilePanel(true);
+    setBusy("正在加载交易对属性配置...");
+    setError(null);
+    try {
+      await loadPairProfileConfig();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "加载交易对属性配置失败");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const handleReloadPairProfileConfig = async () => {
+    setBusy("正在重新加载交易对属性配置...");
+    setError(null);
+    try {
+      await loadPairProfileConfig();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "重新加载交易对属性配置失败");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const handleAddPairProfileRow = () => {
+    setPairProfileRows((prev) => [{ id: pairProfileRowId(), pair: "", attrsText: "{}" }, ...prev]);
+  };
+
+  const handleUpdatePairProfileRow = (rowId: string, key: "pair" | "attrsText", value: string) => {
+    setPairProfileRows((prev) =>
+      prev.map((item) =>
+        item.id === rowId
+          ? {
+              ...item,
+              [key]: value,
+            }
+          : item,
+      ),
+    );
+  };
+
+  const handleRemovePairProfileRow = (rowId: string) => {
+    setPairProfileRows((prev) => {
+      const next = prev.filter((item) => item.id !== rowId);
+      if (next.length > 0) return next;
+      return [{ id: pairProfileRowId(), pair: "", attrsText: "{}" }];
+    });
+  };
+
+  const handleSavePairProfileConfig = async () => {
+    setBusy("正在保存交易对属性配置...");
+    setError(null);
+    try {
+      const defaultMap = normalizeProfileMap(parseJsonObject(pairProfileDefaultsText, "默认属性"), "默认属性");
+      const pairsPayload: Record<string, Record<string, PairProfileValue>> = {};
+
+      pairProfileRows.forEach((row, idx) => {
+        const pairKey = row.pair.trim().toUpperCase();
+        if (!pairKey) return;
+        const parsed = parseJsonObject(row.attrsText, `交易对属性第 ${idx + 1} 行`);
+        pairsPayload[pairKey] = normalizeProfileMap(parsed, `交易对 ${pairKey}`);
+      });
+
+      const response = await savePairProfile({
+        defaults: defaultMap,
+        pairs: pairsPayload,
+      });
+      setPairProfileUpdatedAt(response.updated_at || "");
+      setPairProfileStorageFile(response.storage_file || "");
+      setPairProfileFreqtradeFile(response.freqtrade_file || "");
+      setPairProfileDefaultsText(prettyJson(response.defaults ?? {}));
+      const rows = Object.entries(response.pairs ?? {}).map(([pairKey, attrs]) => ({
+        id: pairProfileRowId(),
+        pair: pairKey,
+        attrsText: prettyJson(attrs ?? {}),
+      }));
+      setPairProfileRows(rows.length > 0 ? rows : [{ id: pairProfileRowId(), pair: "", attrsText: "{}" }]);
+      setShowPairProfilePanel(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "保存交易对属性配置失败");
+    } finally {
+      setBusy(null);
+    }
   };
 
   useEffect(() => {
@@ -726,16 +895,33 @@ export default function App() {
       return;
     }
 
+    const runPair = (selectedBacktestScenario?.pair ?? pair).trim();
+    const runTimeframe = (selectedBacktestScenario?.timeframe ?? timeframe).trim();
+    const runTimerange = (selectedBacktestScenario?.timerange ?? timerange).trim();
+    if (!runPair || !runTimeframe || !runTimerange) {
+      setError("回测参数不完整，请在场景设置中补全交易对、周期和区间。");
+      return;
+    }
+    if (selectedBacktestScenario) {
+      setBacktestConfig("pair", runPair);
+      setBacktestConfig("timeframe", runTimeframe);
+      setBacktestConfig("timerange", runTimerange);
+    }
+
     setBacktestSlotCardId(strategyCard.id);
-    setBusy("正在启动回测任务...");
+    setBusy(
+      selectedBacktestScenario
+        ? `正在启动回测任务（${selectedBacktestScenario.name}）...`
+        : "正在启动回测任务...",
+    );
     setError(null);
     startAiWorkStage();
     try {
       const result = await runBacktest({
         buildId: strategyCard.buildId,
-        pair,
-        timeframe,
-        timerange,
+        pair: runPair,
+        timeframe: runTimeframe,
+        timerange: runTimerange,
       });
       setJob(result.job_id);
       const status: BacktestResult["status"] =
@@ -826,6 +1012,11 @@ export default function App() {
     }
   };
 
+  const handleApplyBacktestScenario = (scenario: BacktestScenario) => {
+    applyBacktestScenario(scenario.id);
+    setError(null);
+  };
+
   const renderCard = (card: StrategyCard, onWorkbench: boolean) => {
     const selected = selectedCardId === card.id;
     const equipped = isModuleCardType(card.cardType) && equippedCardIds[card.cardType] === card.id;
@@ -898,6 +1089,9 @@ export default function App() {
           </button>
           <button type="button" onClick={() => setShowAiPanel(true)}>
             AI 配置中心
+          </button>
+          <button type="button" onClick={() => void handleOpenPairProfilePanel()}>
+            交易对属性配置
           </button>
         </div>
       </header>
@@ -1026,7 +1220,17 @@ export default function App() {
                 </label>
                 <label>
                   周期
-                  <input value={timeframe} onChange={(event) => setBacktestConfig("timeframe", event.target.value)} />
+                  <div className="field-with-action">
+                    <input value={timeframe} onChange={(event) => setBacktestConfig("timeframe", event.target.value)} />
+                    <button
+                      type="button"
+                      className="field-action-btn"
+                      disabled={Boolean(busy)}
+                      onClick={() => setShowBacktestScenarioPanel(true)}
+                    >
+                      场景
+                    </button>
+                  </div>
                 </label>
                 <label>
                   回测区间
@@ -1038,6 +1242,11 @@ export default function App() {
                 <button type="button" disabled={Boolean(busy)} onClick={() => void handleRunBacktest()}>
                   执行回测
                 </button>
+              </div>
+              <div className="mini-tip">
+                {selectedBacktestScenario
+                  ? `本次回测场景: ${selectedBacktestScenario.name} (${selectedBacktestScenario.pair} / ${selectedBacktestScenario.timeframe} / ${selectedBacktestScenario.timerange})`
+                  : "未勾选场景时，使用当前输入框参数回测。"}
               </div>
 
               <div className="build-state">
@@ -1297,6 +1506,169 @@ export default function App() {
                 <button type="button" disabled={Boolean(busy)} onClick={() => void refreshAiConfig()}>
                   重新加载
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {showPairProfilePanel ? (
+        <div className="card-panel-overlay" onMouseDown={() => setShowPairProfilePanel(false)}>
+          <div
+            className="card-panel-shell pair-profile-shell"
+            style={{ width: `${Math.max(760, panelWidth)}px` }}
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className="panel-resize-handle" onMouseDown={() => setResizingPanel(true)} />
+            <div className="card-panel pair-profile-panel">
+              <div className="card-panel-title">
+                <h2>交易对属性配置</h2>
+                <button type="button" onClick={() => setShowPairProfilePanel(false)}>
+                  关闭
+                </button>
+              </div>
+
+              <div className="zone-subtitle">
+                用于策略参数按交易对覆写。查找顺序: 完整交易对 (如 XRP/USDT:USDT) -&gt; 交易对 (XRP/USDT) -&gt; 币种 (XRP) -&gt; 默认属性。
+              </div>
+
+              <div className="card-panel-meta">
+                <div>更新时间: {pairProfileUpdatedAt || "-"}</div>
+                <div>Studio 文件: {pairProfileStorageFile || "-"}</div>
+                <div>Freqtrade 文件: {pairProfileFreqtradeFile || "-"}</div>
+              </div>
+
+              <label>
+                默认属性 (JSON 对象)
+                <textarea
+                  value={pairProfileDefaultsText}
+                  onChange={(event) => setPairProfileDefaultsText(event.target.value)}
+                  placeholder='例如: {"base_ema_len": 169, "risk_scale": 1.0}'
+                />
+              </label>
+
+              <div className="pair-profile-list">
+                {pairProfileRows.map((row) => (
+                  <div key={row.id} className="pair-profile-row">
+                    <label>
+                      交易对键
+                      <input
+                        value={row.pair}
+                        onChange={(event) => handleUpdatePairProfileRow(row.id, "pair", event.target.value)}
+                        placeholder="XRP/USDT:USDT 或 XRP"
+                      />
+                    </label>
+                    <label>
+                      属性 (JSON 对象)
+                      <textarea
+                        value={row.attrsText}
+                        onChange={(event) => handleUpdatePairProfileRow(row.id, "attrsText", event.target.value)}
+                        placeholder='例如: {"base_ema_len": 144}'
+                      />
+                    </label>
+                    <div className="pair-profile-row-actions">
+                      <button type="button" className="danger" onClick={() => handleRemovePairProfileRow(row.id)}>
+                        删除
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="card-panel-actions">
+                <button type="button" disabled={Boolean(busy)} onClick={handleAddPairProfileRow}>
+                  新增交易对条目
+                </button>
+                <button type="button" disabled={Boolean(busy)} onClick={() => void handleReloadPairProfileConfig()}>
+                  重新加载
+                </button>
+                <button type="button" disabled={Boolean(busy)} onClick={() => void handleSavePairProfileConfig()}>
+                  保存配置
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {showBacktestScenarioPanel ? (
+        <div className="card-panel-overlay" onMouseDown={() => setShowBacktestScenarioPanel(false)}>
+          <div
+            className="card-panel-shell backtest-scenario-shell"
+            style={{ width: `${Math.max(760, panelWidth)}px` }}
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className="panel-resize-handle" onMouseDown={() => setResizingPanel(true)} />
+            <div className="card-panel backtest-scenario-panel">
+              <div className="card-panel-title">
+                <h2>回测场景设置</h2>
+                <button type="button" onClick={() => setShowBacktestScenarioPanel(false)}>
+                  关闭
+                </button>
+              </div>
+
+              <div className="zone-subtitle">通过 add 创建交易对/周期/区间场景，并勾选本次回测要使用的一项。</div>
+
+              <div className="card-panel-actions">
+                <button type="button" disabled={Boolean(busy)} onClick={() => addBacktestScenario()}>
+                  Add 场景
+                </button>
+              </div>
+
+              <div className="scenario-list">
+                {backtestScenarios.map((scenario) => (
+                  <div key={scenario.id} className={["scenario-row", scenario.checked ? "checked" : ""].join(" ")}>
+                    <label className="scenario-check">
+                      <input
+                        type="checkbox"
+                        checked={scenario.checked}
+                        onChange={() => toggleBacktestScenario(scenario.id)}
+                      />
+                      本次使用
+                    </label>
+
+                    <label>
+                      场景名
+                      <input
+                        value={scenario.name}
+                        onChange={(event) => updateBacktestScenario(scenario.id, "name", event.target.value)}
+                      />
+                    </label>
+
+                    <label>
+                      交易对
+                      <input
+                        value={scenario.pair}
+                        onChange={(event) => updateBacktestScenario(scenario.id, "pair", event.target.value)}
+                      />
+                    </label>
+
+                    <label>
+                      周期
+                      <input
+                        value={scenario.timeframe}
+                        onChange={(event) => updateBacktestScenario(scenario.id, "timeframe", event.target.value)}
+                      />
+                    </label>
+
+                    <label>
+                      回测区间
+                      <input
+                        value={scenario.timerange}
+                        onChange={(event) => updateBacktestScenario(scenario.id, "timerange", event.target.value)}
+                      />
+                    </label>
+
+                    <div className="scenario-row-actions">
+                      <button type="button" onClick={() => handleApplyBacktestScenario(scenario)}>
+                        应用到主配置
+                      </button>
+                      <button type="button" className="danger" onClick={() => removeBacktestScenario(scenario.id)}>
+                        删除
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

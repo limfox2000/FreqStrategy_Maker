@@ -467,6 +467,19 @@ textarea {
   min-width: 0;
 }
 
+.field-with-action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.field-action-btn {
+  padding: 7px 10px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
 .toggle-item {
   grid-column: span 2;
   display: flex !important;
@@ -497,6 +510,13 @@ textarea {
   gap: 8px;
   flex-wrap: wrap;
   min-width: 0;
+}
+
+.mini-tip {
+  color: #8eb3e7;
+  font-size: 12px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .build-state,
@@ -748,6 +768,98 @@ pre {
   min-height: 220px;
 }
 
+.pair-profile-shell {
+  max-width: min(1280px, 96vw);
+}
+
+.pair-profile-panel {
+  grid-template-rows: auto auto auto auto 1fr auto;
+}
+
+.pair-profile-panel > label > textarea {
+  min-height: 120px;
+}
+
+.pair-profile-list {
+  border: 1px solid #304667;
+  border-radius: 8px;
+  background: #0c1422;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  max-height: min(44vh, 560px);
+  overflow: auto;
+}
+
+.pair-profile-row {
+  border: 1px solid #2d4565;
+  border-radius: 8px;
+  background: #101a2d;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(300px, 1.8fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.pair-profile-row textarea {
+  min-height: 94px;
+}
+
+.pair-profile-row-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.backtest-scenario-shell {
+  max-width: min(1200px, 95vw);
+}
+
+.backtest-scenario-panel {
+  grid-template-rows: auto auto auto 1fr;
+}
+
+.scenario-list {
+  border: 1px solid #304667;
+  border-radius: 8px;
+  background: #0c1422;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  max-height: min(60vh, 760px);
+  overflow: auto;
+}
+
+.scenario-row {
+  border: 1px solid #2d4565;
+  border-radius: 8px;
+  background: #101a2d;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 94px minmax(130px, 0.85fr) minmax(170px, 1fr) 88px minmax(150px, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.scenario-row.checked {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.25) inset;
+}
+
+.scenario-check {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #b8d8ff;
+}
+
+.scenario-row-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .card-panel-meta {
   border: 1px solid #304667;
   border-radius: 8px;
@@ -897,6 +1009,23 @@ pre {
   .compose-slot-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .scenario-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pair-profile-row {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-check {
+    grid-column: span 2;
+  }
+
+  .scenario-row-actions {
+    grid-column: span 2;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 760px) {
@@ -925,6 +1054,15 @@ pre {
   .equipped-grid,
   .compose-slot-grid {
     grid-template-columns: 1fr;
+  }
+
+  .scenario-row {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-check,
+  .scenario-row-actions {
+    grid-column: span 1;
   }
 
   .toggle-item {

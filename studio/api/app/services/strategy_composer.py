@@ -11,6 +11,8 @@ from fastapi import HTTPException
 from ..schemas.strategy import ComposeStrategyRequest, ComposeStrategyResponse, SyncStrategyFromFileRequest
 from .ai_runtime import get_ai_identity, optimize_strategy_code
 from .llm_adapter import LlmAdapterError, complete_text
+from .param_registry import build_param_registry_prompt_block
+from .pair_profile import build_pair_profile_prompt_block
 from .storage import BUILD_DIR, GENERATED_STRATEGY_DIR, MODULE_DIR, new_id, read_json, write_json
 
 
@@ -87,7 +89,9 @@ def _build_system_prompt(persona_md: str) -> str:
         "4) strategy_code must include: imports, IStrategy class, timeframe/can_short, and complete strategy logic.\n"
         "5) Respect explicit numeric constraints from user requirement.\n"
         "6) Keep runtime compatibility with freqtrade strategy imports.\n"
-        "7) strategy_code must pass Python ast.parse."
+        "7) strategy_code must pass Python ast.parse.\n"
+        "8) Strategy should support pair-specific parameter override from /freqtrade/user_data/pair_profiles.json with fallback to defaults.\n"
+        "9) For pair-configurable variable names, only use keys from parameter registry."
     )
 
 
@@ -100,6 +104,8 @@ def _build_user_prompt(
     feedback: str | None = None,
 ) -> str:
     feedback_block = f"\nPrevious output issue (must fix):\n{feedback.strip()}\n" if feedback else ""
+    param_registry_block = build_param_registry_prompt_block()
+    pair_profile_block = build_pair_profile_prompt_block(payload.validation.pair)
     optimize_block = ""
     has_modules = any(
         str(module.get("module_code", "")).strip() or str(module.get("requirement", "")).strip()
@@ -135,6 +141,11 @@ def _build_user_prompt(
         f"- class name: {strategy_name}\n"
         f"- timeframe: {payload.base.timeframe}\n"
         f"- can_short: {payload.base.can_short}\n\n"
+        f"{param_registry_block}\n\n"
+        f"{pair_profile_block}\n\n"
+        "Pair profile implementation requirement:\n"
+        "- Include reusable helper logic in strategy class to read pair_profiles.json at runtime.\n"
+        "- For core indicator parameters, call helper with metadata['pair'] (or trade.pair) and keep hard default fallback.\n\n"
         f"Strategy-level requirement:\n{payload.requirement.strip()}\n\n"
         f"{optimize_block}"
         f"{module_block}"
