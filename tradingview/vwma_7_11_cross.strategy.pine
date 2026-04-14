@@ -1,0 +1,59 @@
+﻿//@version=6
+strategy("Dual Special VWMA Cross Strategy", overlay=true, initial_capital=100, pyramiding=0)
+
+fastLen = input.int(7, "Fast VWMA Length", minval=1)
+slowLen = input.int(11, "Slow VWMA Length", minval=1)
+bbLen = input.int(20, "BB Length", minval=1)
+bbMult = input.float(2.0, "BB StdDev Mult", minval=0.1, step=0.1)
+trendEmaLen = input.int(144, "Trend EMA Length", minval=1)
+envelopePctInput = input.float(1.5, "Envelope Offset (%)", minval=0.0, step=0.1)
+allowShort = input.bool(true, "Enable Short")
+
+bbBasis = ta.sma(close, bbLen)
+bbDev = ta.stdev(close, bbLen) * bbMult
+bbUpper = bbBasis + bbDev
+bbLower = bbBasis - bbDev
+bbRange = math.max(bbUpper - bbLower, syminfo.mintick)
+
+// Fast mapped source: near lower band -> high, near upper band -> low
+bandPosRaw = (close - bbLower) / bbRange
+bandPos = math.min(math.max(bandPosRaw, 0.0), 1.0)
+mappedPrice = high + (low - high) * bandPos
+
+// Slow mapped source (reversed): near lower band -> low, near upper band -> high
+mappedPriceRev = low + (high - low) * bandPos
+
+specialVWMA = ta.vwma(mappedPrice, fastLen)
+baselineVWMA = ta.vwma(mappedPriceRev, slowLen)
+
+trendEMA = ta.ema(close, trendEmaLen)
+envelopePct = envelopePctInput * 0.01
+envelopeUpper = trendEMA * (1.0 + envelopePct)
+envelopeLower = trendEMA * (1.0 - envelopePct)
+
+rawLongSignal = ta.crossunder(specialVWMA, baselineVWMA)
+rawShortSignal = ta.crossover(specialVWMA, baselineVWMA)
+
+longSignal = rawLongSignal and close > envelopeUpper
+shortSignal = rawShortSignal and close < envelopeLower
+
+if longSignal
+    strategy.entry("Long", strategy.long)
+
+if allowShort and shortSignal
+    strategy.entry("Short", strategy.short)
+
+if not allowShort and shortSignal
+    strategy.close("Long")
+
+plot(specialVWMA, "Special VWMA (Fast)", color=color.new(color.lime, 0), linewidth=2)
+plot(baselineVWMA, "Special VWMA (Slow, Reversed)", color=color.new(color.orange, 0), linewidth=2)
+plot(trendEMA, "EMA 144", color=color.new(color.white, 0), linewidth=2)
+plot(envelopeUpper, "EMA Envelope Upper", color=color.new(color.fuchsia, 0))
+plot(envelopeLower, "EMA Envelope Lower", color=color.new(color.fuchsia, 0))
+plot(bbUpper, "BB Upper", color=color.new(color.blue, 30))
+plot(bbBasis, "BB Basis", color=color.new(color.blue, 60))
+plot(bbLower, "BB Lower", color=color.new(color.blue, 30))
+
+plotshape(longSignal, title="Long Signal", style=shape.triangleup, location=location.belowbar, color=color.new(color.lime, 0), size=size.tiny, text="L")
+plotshape(shortSignal, title="Short Signal", style=shape.triangledown, location=location.abovebar, color=color.new(color.red, 0), size=size.tiny, text="S")

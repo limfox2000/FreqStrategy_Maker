@@ -1,0 +1,199 @@
+﻿//@version=6
+strategy("区间优先 + 指标辅助策略 (双轨制)", 
+     overlay=true, 
+     margin_long=100, 
+     margin_short=100,
+     pyramiding=1,
+     default_qty_type=strategy.percent_of_equity,
+     default_qty_value=100)
+
+// --- 1. 多空分界线：EMA144 ---
+emaLength = input.int(144, "EMA 周期")
+emaLine = ta.ema(close, emaLength)
+
+isAboveEMA = close > emaLine
+isBelowEMA = close < emaLine
+
+// --- 2. 四段价格区域设置（固定价格） ---
+zone1Base = input.float(4100.0, "区域1 基准价")
+zone1Width = input.float(30.0, "区域1 宽度(±)")
+zone2Base = input.float(4200.0, "区域2 基准价")
+zone2Width = input.float(30.0, "区域2 宽度(±)")
+zone3Base = input.float(4300.0, "区域3 基准价")
+zone3Width = input.float(30.0, "区域3 宽度(±)")
+zone4Base = input.float(4400.0, "区域4 基准价")
+zone4Width = input.float(30.0, "区域4 宽度(±)")
+
+zone1Top = zone1Base + zone1Width
+zone1Bottom = zone1Base - zone1Width
+zone2Top = zone2Base + zone2Width
+zone2Bottom = zone2Base - zone2Width
+zone3Top = zone3Base + zone3Width
+zone3Bottom = zone3Base - zone3Width
+zone4Top = zone4Base + zone4Width
+zone4Bottom = zone4Base - zone4Width
+
+// --- 3. 位置判定 ---
+inZone1 = close >= zone1Bottom and close <= zone1Top
+inZone2 = close >= zone2Bottom and close <= zone2Top
+inZone3 = close >= zone3Bottom and close <= zone3Top
+inZone4 = close >= zone4Bottom and close <= zone4Top
+
+inLongZone = isBelowEMA and (inZone1 or inZone2)
+inShortZone = isAboveEMA and (inZone3 or inZone4)
+
+currentZone = inZone1 ? 1 : inZone2 ? 2 : inZone3 ? 3 : inZone4 ? 4 : 0
+
+zoneTop = currentZone == 1 ? zone1Top : currentZone == 2 ? zone2Top : 
+         currentZone == 3 ? zone3Top : currentZone == 4 ? zone4Top : na
+
+zoneBottom = currentZone == 1 ? zone1Bottom : currentZone == 2 ? zone2Bottom : 
+         currentZone == 3 ? zone3Bottom : currentZone == 4 ? zone4Bottom : na
+
+zoneMid = (zoneTop + zoneBottom) / 2
+zoneSpan = zoneTop - zoneBottom
+zonePosition = zoneSpan != 0 ? (close - zoneBottom) / zoneSpan : na
+
+// --- 4. 指标计算 ---
+fastLen = input.int(7, "快线周期")
+slowLen = input.int(21, "慢线周期")
+fastMA = ta.ema(close, fastLen)
+slowMA = ta.ema(close, slowLen)
+
+maDiff = fastMA - slowMA
+maDiffPercent = (maDiff / slowMA) * 100
+
+[macdLine, signalLine, _] = ta.macd(close, 12, 26, 9)
+macdTrend = macdLine - signalLine
+
+rsiValue = ta.rsi(close, 14)
+
+// --- 5. 入场逻辑 ---
+entryMode = input.string("双轨制", "入场模式", options=["纯区间(激进)", "双轨制", "纯指标(保守)"])
+
+// 区间触发条件
+longZoneTrigger = inLongZone and zonePosition < 0.3 and close < open[1]
+shortZoneTrigger = inShortZone and zonePosition > 0.7 and close > open[1]
+
+// 宽松指标确认
+longIndicatorOK = maDiff > -0.5 or macdTrend > -0.2 or rsiValue > 40
+shortIndicatorOK = maDiff < 0.5 or macdTrend < 0.2 or rsiValue < 60
+
+// 严格指标确认
+longIndicatorStrong = ta.crossover(fastMA, slowMA) or (maDiff > 0 and macdTrend > 0)
+shortIndicatorStrong = ta.crossunder(fastMA, slowMA) or (maDiff < 0 and macdTrend < 0)
+
+longCondition = switch entryMode
+    "纯区间(激进)" => longZoneTrigger
+    "双轨制" => longZoneTrigger and longIndicatorOK
+    "纯指标(保守)" => inLongZone and longIndicatorStrong
+    => false
+
+shortCondition = switch entryMode
+    "纯区间(激进)" => shortZoneTrigger
+    "双轨制" => shortZoneTrigger and shortIndicatorOK
+    "纯指标(保守)" => inShortZone and shortIndicatorStrong
+    => false
+
+// --- 6. 离场逻辑 ---
+longExitZone = close > zoneTop or close < zoneBottom
+longExitEMA = close > emaLine * 1.003
+longExitSignal = ta.crossunder(fastMA, slowMA) and close < zoneMid
+
+shortExitZone = close < zoneBottom or close > zoneTop
+shortExitEMA = close < emaLine * 0.997
+shortExitSignal = ta.crossover(fastMA, slowMA) and close > zoneMid
+
+// --- 7. 执行交易 ---
+if longCondition
+    if strategy.position_size < 0
+        strategy.close("做空", comment="平空转多")
+    if strategy.position_size <= 0
+        strategy.entry("做多", strategy.long)
+
+if shortCondition
+    if strategy.position_size > 0
+        strategy.close("做多", comment="平多转空")
+    if strategy.position_size >= 0
+        strategy.entry("做空", strategy.short)
+
+if strategy.position_size > 0
+    if longExitZone
+        strategy.close("做多", comment="离开区域")
+    else if longExitEMA
+        strategy.close("做多", comment="破EMA")
+    else if longExitSignal
+        strategy.close("做多", comment="死叉离场")
+
+if strategy.position_size < 0
+    if shortExitZone
+        strategy.close("做空", comment="离开区域")
+    else if shortExitEMA
+        strategy.close("做空", comment="破EMA")
+    else if shortExitSignal
+        strategy.close("做空", comment="金叉离场")
+
+// --- 8. 可视化 ---
+plot(emaLine, "EMA 144", color=color.purple, linewidth=3)
+bgcolor(isAboveEMA ? color.new(color.red, 92) : isBelowEMA ? color.new(color.green, 92) : na)
+
+// 绘制区域
+zone1Color = color.green
+zone2Color = color.lime
+zone3Color = color.red
+zone4Color = color.maroon
+
+z1TopPlot = plot(zone1Top, "Z1顶", color=zone1Color, linewidth=1, style=plot.style_linebr)
+z1BottomPlot = plot(zone1Bottom, "Z1底", color=zone1Color, linewidth=1, style=plot.style_linebr)
+fill(z1TopPlot, z1BottomPlot, color=color.new(zone1Color, 88))
+
+z2TopPlot = plot(zone2Top, "Z2顶", color=zone2Color, linewidth=1, style=plot.style_linebr)
+z2BottomPlot = plot(zone2Bottom, "Z2底", color=zone2Color, linewidth=1, style=plot.style_linebr)
+fill(z2TopPlot, z2BottomPlot, color=color.new(zone2Color, 88))
+
+z3TopPlot = plot(zone3Top, "Z3顶", color=zone3Color, linewidth=1, style=plot.style_linebr)
+z3BottomPlot = plot(zone3Bottom, "Z3底", color=zone3Color, linewidth=1, style=plot.style_linebr)
+fill(z3TopPlot, z3BottomPlot, color=color.new(zone3Color, 88))
+
+z4TopPlot = plot(zone4Top, "Z4顶", color=zone4Color, linewidth=1, style=plot.style_linebr)
+z4BottomPlot = plot(zone4Bottom, "Z4底", color=zone4Color, linewidth=1, style=plot.style_linebr)
+fill(z4TopPlot, z4BottomPlot, color=color.new(zone4Color, 88))
+
+// 绘制均线
+plot(fastMA, "快线", color=color.blue, linewidth=1)
+plot(slowMA, "慢线", color=color.orange, linewidth=1)
+
+// 绘制区域中线 - 修正：直接绘制 zoneMid，不在区域内时它本身就是 na
+plot(zoneMid, "中线", color=color.gray, linewidth=1, style=plot.style_line)
+
+// 绘制入场信号
+plotshape(longCondition, title="做多入场", location=location.belowbar,
+          color=color.green, style=shape.triangleup, size=size.small, text="多")
+plotshape(shortCondition, title="做空入场", location=location.abovebar,
+          color=color.red, style=shape.triangledown, size=size.small, text="空")
+
+// 绘制离场信号
+plotshape(strategy.position_size > 0 and longExitSignal, title="多头离场", location=location.abovebar,
+          color=color.orange, style=shape.cross, size=size.small)
+plotshape(strategy.position_size < 0 and shortExitSignal, title="空头离场", location=location.belowbar,
+          color=color.orange, style=shape.cross, size=size.small)
+
+// 显示状态信息
+var label statusLabel = na
+if barstate.islast
+    dirText = strategy.position_size > 0 ? "持多" : strategy.position_size < 0 ? "持空" : "空仓"
+    zoneText = currentZone > 0 ? "区域" + str.tostring(currentZone) : "无区域"
+    modeText = "模式: " + entryMode
+    posText = inLongZone or inShortZone ? "位置: " + str.tostring(math.round(zonePosition * 100)) + "%" : ""
+    infoText = dirText + " | " + zoneText + " | " + modeText + " | " + posText
+
+    if na(statusLabel)
+        statusLabel := label.new(bar_index, close, text=infoText,
+              yloc=yloc.price,
+              style=label.style_label_right,
+              color=color.blue,
+              textcolor=color.white,
+              size=size.small)
+    else
+        label.set_xy(statusLabel, bar_index, close)
+        label.set_text(statusLabel, infoText)

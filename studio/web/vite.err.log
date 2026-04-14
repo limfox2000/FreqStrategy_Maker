@@ -1407,3 +1407,4 @@ G:/Trading/FreqStrategy_Maker/studio/web/src/App.tsx:1551:146: ERROR: The charac
       at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
       at Readable.push (node:internal/streams/readable:392:5)
       at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+^C^C
