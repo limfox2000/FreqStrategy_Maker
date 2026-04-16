@@ -1,5 +1,6 @@
 ﻿import { type DragEvent, type MouseEvent as ReactMouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { BacktestCharts } from "./modules/charts/BacktestCharts";
+import { PairProfilePreviewCharts } from "./modules/charts/PairProfilePreviewCharts";
 import { RetroBackdrop } from "./modules/workspace/RetroBackdrop";
 import {
   composeStrategy,
@@ -7,6 +8,7 @@ import {
   getAiModels,
   getBacktestResult,
   getPairProfile,
+  getPairProfilePreview,
   getPersona,
   runBacktest,
   savePairProfile,
@@ -21,6 +23,7 @@ import type {
   BacktestScenario,
   CardType,
   ModuleCardType,
+  PairProfilePreviewResponse,
   PairProfileValue,
   StrategyCard,
 } from "./types";
@@ -29,6 +32,8 @@ const GRID = 24;
 const PAD = 12;
 const CARD_W = 220;
 const CARD_H = 170;
+const PAIR_PROFILE_PREVIEW_TIMEFRAME = "2h";
+const PAIR_PROFILE_PREVIEW_DAYS = 7;
 
 type AiWorkStage = "idle" | "thinking" | "coding" | "done";
 type ComposeSlotKey = ModuleCardType | "strategy";
@@ -129,6 +134,21 @@ function formatTime(ts: number): string {
   return new Date(ts).toLocaleString("zh-CN", { hour12: false });
 }
 
+function formatDateYmd(date: Date): string {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+  return `${year}${month}${day}`;
+}
+
+function recentDaysTimerange(days: number): string {
+  const end = new Date();
+  end.setHours(0, 0, 0, 0);
+  const start = new Date(end);
+  start.setDate(start.getDate() - Math.max(0, days - 1));
+  return `${formatDateYmd(start)}-${formatDateYmd(end)}`;
+}
+
 function pairProfileRowId(): string {
   return `pp_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -218,6 +238,7 @@ export default function App() {
   const [resizingPanel, setResizingPanel] = useState(false);
   const [showAiPanel, setShowAiPanel] = useState(false);
   const [showPairProfilePanel, setShowPairProfilePanel] = useState(false);
+  const [showPairProfileViewPanel, setShowPairProfileViewPanel] = useState(false);
   const [showBacktestScenarioPanel, setShowBacktestScenarioPanel] = useState(false);
   const [composeSlots, setComposeSlots] = useState<ComposeSlots>({
     indicator_factor: undefined,
@@ -238,6 +259,11 @@ export default function App() {
   const [pairProfileUpdatedAt, setPairProfileUpdatedAt] = useState("");
   const [pairProfileStorageFile, setPairProfileStorageFile] = useState("");
   const [pairProfileFreqtradeFile, setPairProfileFreqtradeFile] = useState("");
+  const [pairProfileViewPairs, setPairProfileViewPairs] = useState<string[]>([]);
+  const [pairProfileViewPair, setPairProfileViewPair] = useState("");
+  const [pairProfileViewResult, setPairProfileViewResult] = useState<PairProfilePreviewResponse | undefined>(
+    undefined,
+  );
 
   const [aiWorkStage, setAiWorkStage] = useState<AiWorkStage>("idle");
   const [showAiWorkStage, setShowAiWorkStage] = useState(false);
@@ -443,6 +469,64 @@ export default function App() {
       setShowPairProfilePanel(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : "保存交易对属性配置失败");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const loadPairProfilePreview = async (targetPair?: string) => {
+    const pairToLoad = (targetPair ?? pairProfileViewPair).trim();
+    if (!pairToLoad) {
+      throw new Error("请选择交易对后再加载图形。");
+    }
+    const timerangeForView = recentDaysTimerange(PAIR_PROFILE_PREVIEW_DAYS);
+    const response = await getPairProfilePreview({
+      pair: pairToLoad,
+      timeframe: PAIR_PROFILE_PREVIEW_TIMEFRAME,
+      timerange: timerangeForView,
+      maxPoints: 1800,
+    });
+    setPairProfileViewResult(response);
+  };
+
+  const handleOpenPairProfileViewPanel = async () => {
+    setShowPairProfileViewPanel(true);
+    setBusy("正在加载交易对图形显示...");
+    setError(null);
+    try {
+      const profile = await getPairProfile();
+      const pairKeys = Object.keys(profile.pairs ?? {}).map((item) => item.trim()).filter(Boolean);
+      if (pairKeys.length === 0) {
+        throw new Error("pair_profiles.json 中尚未定义交易对条目。");
+      }
+
+      const normalizedCurrent = pair.trim().toUpperCase();
+      const initialPair = pairKeys.includes(normalizedCurrent) ? normalizedCurrent : pairKeys[0];
+      setPairProfileViewPairs(pairKeys);
+      setPairProfileViewPair(initialPair);
+      const timerangeForView = recentDaysTimerange(PAIR_PROFILE_PREVIEW_DAYS);
+
+      const preview = await getPairProfilePreview({
+        pair: initialPair,
+        timeframe: PAIR_PROFILE_PREVIEW_TIMEFRAME,
+        timerange: timerangeForView,
+        maxPoints: 1800,
+      });
+      setPairProfileViewResult(preview);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "加载交易对图形显示失败");
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const handleReloadPairProfilePreview = async () => {
+    setBusy("正在刷新交易对图形...");
+    setError(null);
+    try {
+      await loadPairProfilePreview();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "刷新交易对图形失败");
     } finally {
       setBusy(null);
     }
@@ -1093,6 +1177,9 @@ export default function App() {
           <button type="button" onClick={() => void handleOpenPairProfilePanel()}>
             交易对属性配置
           </button>
+          <button type="button" onClick={() => void handleOpenPairProfileViewPanel()}>
+            交易对图形显示
+          </button>
         </div>
       </header>
 
@@ -1586,6 +1673,90 @@ export default function App() {
                   保存配置
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {showPairProfileViewPanel ? (
+        <div className="card-panel-overlay" onMouseDown={() => setShowPairProfileViewPanel(false)}>
+          <div
+            className="card-panel-shell pair-profile-view-shell"
+            style={{ width: `${Math.max(960, panelWidth)}px` }}
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <div className="panel-resize-handle" onMouseDown={() => setResizingPanel(true)} />
+            <div className="card-panel pair-profile-view-panel">
+              <div className="card-panel-title">
+                <h2>交易对图形显示</h2>
+                <button type="button" onClick={() => setShowPairProfileViewPanel(false)}>
+                  关闭
+                </button>
+              </div>
+
+              <div className="zone-subtitle">只读展示 pair profile 中交易对的指标图形与区域定义，便于日常观察与调参前校验。</div>
+
+              <div className="pair-profile-view-controls">
+                <label>
+                  交易对
+                  <select value={pairProfileViewPair} onChange={(event) => setPairProfileViewPair(event.target.value)}>
+                    {pairProfileViewPairs.map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <div className="pair-profile-view-fixed">
+                  固定窗口: {PAIR_PROFILE_PREVIEW_TIMEFRAME} / 最近{PAIR_PROFILE_PREVIEW_DAYS}天
+                </div>
+                <div className="pair-profile-view-actions">
+                  <button type="button" disabled={Boolean(busy)} onClick={() => void handleReloadPairProfilePreview()}>
+                    加载图形
+                  </button>
+                </div>
+              </div>
+
+              <div className="card-panel-meta">
+                <div>请求交易对: {pairProfileViewResult?.requested_pair ?? "-"}</div>
+                <div>数据交易对: {pairProfileViewResult?.resolved_pair ?? "-"}</div>
+                <div>匹配键: {pairProfileViewResult?.matched_pair_key ?? "-"}</div>
+                <div>候选键: {(pairProfileViewResult?.pair_candidates ?? []).join(", ") || "-"}</div>
+                <div>
+                  均线参数: ema_length={String(pairProfileViewResult?.pair_params?.ema_length ?? "-")}, fast_len=
+                  {String(pairProfileViewResult?.pair_params?.fast_len ?? "-")}, slow_len=
+                  {String(pairProfileViewResult?.pair_params?.slow_len ?? "-")}
+                </div>
+                <div>显示周期: {pairProfileViewResult?.timeframe ?? PAIR_PROFILE_PREVIEW_TIMEFRAME}</div>
+                <div>显示范围: {pairProfileViewResult?.timerange ?? recentDaysTimerange(PAIR_PROFILE_PREVIEW_DAYS)}</div>
+                <div>数据行数: {String(pairProfileViewResult?.meta?.rows ?? "-")}</div>
+                <div>
+                  数据时间: {String(pairProfileViewResult?.meta?.data_start ?? "-")} {" -> "}{" "}
+                  {String(pairProfileViewResult?.meta?.data_end ?? "-")}
+                </div>
+              </div>
+
+              {pairProfileViewResult?.zones?.length ? (
+                <div className="pair-profile-zone-grid">
+                  {pairProfileViewResult.zones.map((zone) => (
+                    <div key={zone.name} className="pair-profile-zone-card">
+                      <strong>{zone.name}</strong>
+                      <div>base: {zone.base}</div>
+                      <div>width: {zone.width}</div>
+                      <div>top: {zone.top}</div>
+                      <div>bottom: {zone.bottom}</div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-tip">加载后显示区域定义。</div>
+              )}
+
+              {pairProfileViewResult?.series ? (
+                <PairProfilePreviewCharts preview={pairProfileViewResult} />
+              ) : (
+                <div className="empty-tip">点击“加载图形”获取当前交易对图形。</div>
+              )}
             </div>
           </div>
         </div>

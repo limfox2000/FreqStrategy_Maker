@@ -4,6 +4,14 @@ $root = Split-Path -Parent $PSScriptRoot
 $apiDir = Join-Path $PSScriptRoot "api"
 $webDir = Join-Path $PSScriptRoot "web"
 
+try {
+    docker info *> $null
+    Write-Host "Docker daemon status: Running"
+}
+catch {
+    Write-Warning "Docker daemon is not ready. Pair profile preview and backtest features will fail until Docker Desktop is running."
+}
+
 Write-Host "Starting backend: http://127.0.0.1:8000"
 Start-Process powershell -ArgumentList @(
     "-NoExit",

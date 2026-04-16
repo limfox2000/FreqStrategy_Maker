@@ -2,8 +2,13 @@ from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
 
-from ..schemas.pair_profile import PairProfilePayload, PairProfileResponse
-from ..services.pair_profile import get_pair_profile, save_pair_profile
+from ..schemas.pair_profile import (
+    PairProfilePayload,
+    PairProfilePreviewRequest,
+    PairProfilePreviewResponse,
+    PairProfileResponse,
+)
+from ..services.pair_profile import get_pair_profile, preview_pair_profile, save_pair_profile
 
 
 router = APIRouter()
@@ -20,4 +25,9 @@ def save_pair_profile_endpoint(payload: PairProfilePayload) -> PairProfileRespon
         return save_pair_profile(payload)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.post("/preview", response_model=PairProfilePreviewResponse)
+def preview_pair_profile_endpoint(payload: PairProfilePreviewRequest) -> PairProfilePreviewResponse:
+    return preview_pair_profile(payload)
 

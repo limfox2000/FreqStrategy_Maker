@@ -3,6 +3,7 @@ import type {
   BacktestResult,
   CardType,
   ModuleCardType,
+  PairProfilePreviewResponse,
   PairProfileResponse,
   ComposeResponse,
   PersonaResponse,
@@ -170,5 +171,22 @@ export async function savePairProfile(input: {
   return request<PairProfileResponse>("/api/pair-profile", {
     method: "PUT",
     body: JSON.stringify(input),
+  });
+}
+
+export async function getPairProfilePreview(input: {
+  pair: string;
+  timeframe: string;
+  timerange: string;
+  maxPoints?: number;
+}) {
+  return request<PairProfilePreviewResponse>("/api/pair-profile/preview", {
+    method: "POST",
+    body: JSON.stringify({
+      pair: input.pair,
+      timeframe: input.timeframe,
+      timerange: input.timerange,
+      max_points: input.maxPoints ?? 1800,
+    }),
   });
 }

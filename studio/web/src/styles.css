@@ -776,6 +776,68 @@ pre {
   grid-template-rows: auto auto auto auto 1fr auto;
 }
 
+.pair-profile-view-shell {
+  max-width: min(1440px, 97vw);
+}
+
+.pair-profile-view-panel {
+  grid-template-rows: auto auto auto auto auto 1fr;
+}
+
+.pair-profile-view-controls {
+  display: grid;
+  grid-template-columns: minmax(170px, 1fr) minmax(260px, 1fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.pair-profile-view-controls input,
+.pair-profile-view-controls select {
+  width: 100%;
+}
+
+.pair-profile-view-fixed {
+  border: 1px solid #304667;
+  border-radius: 8px;
+  background: #0c1422;
+  color: #9db6df;
+  font-size: 12px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.pair-profile-view-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pair-profile-zone-grid {
+  border: 1px solid #304667;
+  border-radius: 8px;
+  background: #0c1422;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pair-profile-zone-card {
+  border: 1px solid #2d4565;
+  border-radius: 8px;
+  background: #101a2d;
+  padding: 8px;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: #c3ddff;
+}
+
+.pair-preview-charts .chart-block {
+  min-height: 420px;
+}
+
 .pair-profile-panel > label > textarea {
   min-height: 120px;
 }
@@ -1018,6 +1080,14 @@ pre {
     grid-template-columns: 1fr;
   }
 
+  .pair-profile-view-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .pair-profile-zone-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .scenario-check {
     grid-column: span 2;
   }
@@ -1057,6 +1127,10 @@ pre {
   }
 
   .scenario-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pair-profile-zone-grid {
     grid-template-columns: 1fr;
   }
 

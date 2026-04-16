@@ -118,3 +118,43 @@ export interface PairProfileResponse {
   storage_file: string;
   freqtrade_file: string;
 }
+
+export interface PairProfilePreviewIndicator {
+  name: string;
+  color?: string;
+  points: Array<{ time: number; value: number }>;
+}
+
+export interface PairProfilePreviewSeries {
+  kline: Array<{ time: number; open: number; high: number; low: number; close: number }>;
+  markers: Array<{
+    time: number;
+    position: "aboveBar" | "belowBar";
+    color: string;
+    shape: "arrowUp" | "arrowDown" | "circle";
+    text: string;
+  }>;
+  indicators: PairProfilePreviewIndicator[];
+}
+
+export interface PairProfilePreviewZone {
+  name: string;
+  base: number;
+  width: number;
+  top: number;
+  bottom: number;
+}
+
+export interface PairProfilePreviewResponse {
+  requested_pair: string;
+  resolved_pair: string;
+  pair_candidates: string[];
+  matched_pair_key: string | null;
+  timeframe: string;
+  timerange: string;
+  effective_attrs: Record<string, unknown>;
+  pair_params: Record<string, unknown>;
+  zones: PairProfilePreviewZone[];
+  meta: Record<string, unknown>;
+  series: PairProfilePreviewSeries;
+}
