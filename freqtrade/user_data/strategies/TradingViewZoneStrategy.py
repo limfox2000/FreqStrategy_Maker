@@ -8,6 +8,7 @@ from pandas import DataFrame
 
 import freqtrade.vendor.qtpylib.indicators as qtpylib
 from freqtrade.strategy import CategoricalParameter, DecimalParameter, IStrategy, IntParameter
+from pair_profile_helper import get_pair_attrs
 
 
 class TradingViewZoneStrategy(IStrategy):
@@ -104,20 +105,86 @@ class TradingViewZoneStrategy(IStrategy):
         }
         return aliases.get(raw, "dual")
 
-    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        ema_length = int(self.ema_length.value)
-        fast_len = int(self.fast_len.value)
-        slow_len = int(self.slow_len.value)
-        rsi_period = int(self.rsi_period.value)
+    @staticmethod
+    def _to_int(value: object, default: int) -> int:
+        try:
+            return int(float(value))
+        except (TypeError, ValueError):
+            return int(default)
 
-        zone1_base = float(self.zone1_base.value)
-        zone1_width = float(self.zone1_width.value)
-        zone2_base = float(self.zone2_base.value)
-        zone2_width = float(self.zone2_width.value)
-        zone3_base = float(self.zone3_base.value)
-        zone3_width = float(self.zone3_width.value)
-        zone4_base = float(self.zone4_base.value)
-        zone4_width = float(self.zone4_width.value)
+    @staticmethod
+    def _to_float(value: object, default: float) -> float:
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            return float(default)
+
+    def _resolve_pair_params(self, metadata: dict) -> dict[str, float | int]:
+        pair_key = str((metadata or {}).get("pair") or "")
+        attrs, _ = get_pair_attrs(pair_key)
+        if not isinstance(attrs, dict):
+            attrs = {}
+
+        params: dict[str, float | int] = {
+            "ema_length": int(self.ema_length.value),
+            "fast_len": int(self.fast_len.value),
+            "slow_len": int(self.slow_len.value),
+            "rsi_period": int(self.rsi_period.value),
+            "zone1_base": float(self.zone1_base.value),
+            "zone1_width": float(self.zone1_width.value),
+            "zone2_base": float(self.zone2_base.value),
+            "zone2_width": float(self.zone2_width.value),
+            "zone3_base": float(self.zone3_base.value),
+            "zone3_width": float(self.zone3_width.value),
+            "zone4_base": float(self.zone4_base.value),
+            "zone4_width": float(self.zone4_width.value),
+        }
+
+        params["ema_length"] = self._to_int(
+            attrs.get("ema_length", attrs.get("Matrix_baseEMA_len", params["ema_length"])),
+            int(params["ema_length"]),
+        )
+        params["fast_len"] = self._to_int(attrs.get("fast_len", params["fast_len"]), int(params["fast_len"]))
+        params["slow_len"] = self._to_int(attrs.get("slow_len", params["slow_len"]), int(params["slow_len"]))
+        params["rsi_period"] = self._to_int(attrs.get("rsi_period", params["rsi_period"]), int(params["rsi_period"]))
+
+        zones = attrs.get("zones")
+        for idx in range(1, 5):
+            base_key = f"zone{idx}_base"
+            width_key = f"zone{idx}_width"
+
+            base_raw = attrs.get(base_key, params[base_key])
+            width_raw = attrs.get(width_key, params[width_key])
+
+            if isinstance(zones, dict):
+                zone_obj = zones.get(f"zone{idx}")
+                if zone_obj is None:
+                    zone_obj = zones.get(str(idx))
+                if isinstance(zone_obj, dict):
+                    base_raw = zone_obj.get("base", base_raw)
+                    width_raw = zone_obj.get("width", width_raw)
+
+            params[base_key] = self._to_float(base_raw, float(params[base_key]))
+            params[width_key] = self._to_float(width_raw, float(params[width_key]))
+
+        return params
+
+    def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
+        pair_params = self._resolve_pair_params(metadata)
+
+        ema_length = int(pair_params["ema_length"])
+        fast_len = int(pair_params["fast_len"])
+        slow_len = int(pair_params["slow_len"])
+        rsi_period = int(pair_params["rsi_period"])
+
+        zone1_base = float(pair_params["zone1_base"])
+        zone1_width = float(pair_params["zone1_width"])
+        zone2_base = float(pair_params["zone2_base"])
+        zone2_width = float(pair_params["zone2_width"])
+        zone3_base = float(pair_params["zone3_base"])
+        zone3_width = float(pair_params["zone3_width"])
+        zone4_base = float(pair_params["zone4_base"])
+        zone4_width = float(pair_params["zone4_width"])
 
         long_zone_pos_max = float(self.long_zone_pos_max.value)
         short_zone_pos_min = float(self.short_zone_pos_min.value)

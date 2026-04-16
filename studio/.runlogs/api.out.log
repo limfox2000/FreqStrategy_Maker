@@ -1,0 +1,11 @@
+INFO:     127.0.0.1:62333 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62340 - "OPTIONS /api/ai/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62342 - "OPTIONS /api/ai/persona HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62344 - "OPTIONS /api/ai/persona HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62343 - "OPTIONS /api/ai/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62342 - "GET /api/ai/persona HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62340 - "GET /api/ai/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62343 - "GET /api/ai/persona HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62342 - "GET /api/ai/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62390 - "GET /api/ai/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62490 - "GET /api/health HTTP/1.1" 200 OK
